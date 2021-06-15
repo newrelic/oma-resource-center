@@ -2,7 +2,7 @@
 
 OMA is New Relic's methodology for delivering observability platform value.  It defines value drivers and use cases which can be followed to deliver specific business outcomes.  Each use case defines KPIs that measure progress towards the defined outcome and best practices to follow to improve those KPIs.  They also provide value realization so executive stakeholders can measure progress and see results.
 
-Current value drivers include:
+Available value drivers include:
 - Uptime, Performance, and Reliability
 - Operational Efficiency
 - Innovation and Growth
