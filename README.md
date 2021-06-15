@@ -1,3 +1,5 @@
+[![Community header](https://github.com/newrelic/opensource-website/raw/master/src/images/categories/Community_Project.png)](https://opensource.newrelic.com/oss-category/#community-project)
+
 # New Relic Observability Maturity Architecture (OMA) Resource Center
 
 OMA is New Relic's methodology for delivering observability platform value.  It defines value drivers and use cases which can be followed to deliver specific business outcomes.  Each use case defines KPIs that measure progress towards the defined outcome and best practices to follow to improve those KPIs.  They also provide value realization so executive stakeholders can measure progress and see results.
