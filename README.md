@@ -2,6 +2,12 @@
 
 OMA is New Relic's methodology for delivering observability platform value.  It defines value drivers and use cases which can be followed to deliver specific business outcomes.  Each use case defines KPIs that measure progress towards the defined outcome and best practices to follow to improve those KPIs.  They also provide value realization so executive stakeholders can measure progress and see results.
 
+Current value drivers include:
+- Uptime, Performance, and Reliability
+- Operational Efficiency
+- Innovation and Growth
+- Customer Experience
+
 This repo contains artifacts that support the implementation of the various OMA value drivers and use cases.  
 
 [For more details see these docs.](https://docs.newrelic.com)
@@ -13,7 +19,7 @@ To get started, review the OMA documentation [found here](https://docs.newrelic.
 
 ## Support
 
-New Relic hosts and moderates an online forum where customers can interact with New Relic employees as well as other customers to get help and share best practices. Like all official New Relic open source projects, there's a related Community topic in the New Relic Explorers Hub.
+For help in getting started with OMA, reach out to your New Relic rep.
 
 
 ## Contribute
