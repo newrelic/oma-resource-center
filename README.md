@@ -21,7 +21,7 @@ To get started, review the OMA documentation [found here](https://docs.newrelic.
 
 ## Support
 
-For help in getting started with OMA, reach out to your New Relic rep.
+For help in getting started with OMA, reach out to your New Relic account team.
 
 
 ## Contribute
