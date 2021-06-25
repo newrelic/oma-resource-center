@@ -1,0 +1,845 @@
+{
+  "name": "Customer Experience - Quality Foundation",
+  "description": null,
+  "permissions": "PUBLIC_READ_WRITE",
+  "pages": [
+    {
+      "name": "LOB1",
+      "description": null,
+      "widgets": [
+        {
+          "visualization": {
+            "id": "viz.markdown"
+          },
+          "layout": {
+            "column": 1,
+            "row": 1,
+            "height": 2,
+            "width": 2
+          },
+          "title": "",
+          "rawConfiguration": {
+            "text": "# LOB1\n\n"
+          },
+          "linkedEntityGuids": null
+        },
+        {
+          "visualization": {
+            "id": "viz.billboard"
+          },
+          "layout": {
+            "column": 3,
+            "row": 1,
+            "height": 2,
+            "width": 4
+          },
+          "title": "LOB1 PageViews",
+          "rawConfiguration": {
+            "dataFormatters": [],
+            "nrqlQueries": [
+              {
+                "accountId": ACCOUNT_ID1,
+                "query": "FROM PageView SELECT count(*) SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO WHERE LOB1_PAGEVIEW_FILTER"
+              }
+            ],
+            "thresholds": []
+          },
+          "linkedEntityGuids": null
+        },
+        {
+          "visualization": {
+            "id": "viz.pie"
+          },
+          "layout": {
+            "column": 7,
+            "row": 1,
+            "height": 2,
+            "width": 4
+          },
+          "title": "Filter by Device Type",
+          "rawConfiguration": {
+            "dataFormatters": [],
+            "facet": {
+              "showOtherSeries": false
+            },
+            "nrqlQueries": [
+              {
+                "accountId": ACCOUNT_ID1,
+                "query": "FROM PageView SELECT count(*) WHERE LOB1_PAGEVIEW_FILTER FACET deviceType SINCE 1 WEEK AGO"
+              }
+            ]
+          },
+          "linkedEntityGuids": [
+            "MjQ5MjEyN3xWSVp8REFTSEJPQVJEfDIxMjUyODQ"
+          ]
+        },
+        {
+          "visualization": {
+            "id": "viz.table"
+          },
+          "layout": {
+            "column": 11,
+            "row": 1,
+            "height": 2,
+            "width": 2
+          },
+          "title": "Filter by Country",
+          "rawConfiguration": {
+            "dataFormatters": [],
+            "facet": {
+              "showOtherSeries": true
+            },
+            "nrqlQueries": [
+              {
+                "accountId": ACCOUNT_ID1,
+                "query": "FROM PageView SELECT count(*) WHERE LOB1_PAGEVIEW_FILTER FACET countryCode SINCE 1 WEEK AGO"
+              }
+            ]
+          },
+          "linkedEntityGuids": [
+            "MjQ5MjEyN3xWSVp8REFTSEJPQVJEfDIxMjUyODQ"
+          ]
+        },
+        {
+          "visualization": {
+            "id": "viz.line"
+          },
+          "layout": {
+            "column": 1,
+            "row": 3,
+            "height": 2,
+            "width": 6
+          },
+          "title": "Failed Synthetic Checks - LOB1_SYNTH1_MONITOR",
+          "rawConfiguration": {
+            "dataFormatters": [],
+            "legend": {
+              "enabled": true
+            },
+            "nrqlQueries": [
+              {
+                "accountId": ACCOUNT_ID1,
+                "query": "FROM SyntheticCheck SELECT percentage(count(*),WHERE result = 'FAILED') WHERE monitorName = 'LOB1_SYNTH1_MONITOR' SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO TIMESERIES AUTO"
+              }
+            ],
+            "yAxisLeft": {
+              "zero": true
+            }
+          },
+          "linkedEntityGuids": null
+        },
+        {
+          "visualization": {
+            "id": "viz.line"
+          },
+          "layout": {
+            "column": 7,
+            "row": 3,
+            "height": 2,
+            "width": 6
+          },
+          "title": "Failed Synthetic Checks - LOB1_SYNTH2_MONITOR",
+          "rawConfiguration": {
+            "dataFormatters": [],
+            "legend": {
+              "enabled": true
+            },
+            "nrqlQueries": [
+              {
+                "accountId": ACCOUNT_ID1,
+                "query": "FROM SyntheticCheck SELECT percentage(count(*),WHERE result = 'FAILED') WHERE monitorName = 'LOB1_SYNTH2_MONITOR' SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO TIMESERIES AUTO"
+              }
+            ],
+            "yAxisLeft": {
+              "zero": true
+            }
+          },
+          "linkedEntityGuids": null
+        },
+        {
+          "visualization": {
+            "id": "viz.markdown"
+          },
+          "layout": {
+            "column": 1,
+            "row": 5,
+            "height": 2,
+            "width": 2
+          },
+          "title": "",
+          "rawConfiguration": {
+            "text": "![Add Images](https://web-dev.imgix.net/image/tcFciHGuF3MxnTr1y5ue01OGLBn2/dgpDFckbHwwOKdIGDa3N.svg)"
+          },
+          "linkedEntityGuids": null
+        },
+        {
+          "visualization": {
+            "id": "viz.billboard"
+          },
+          "layout": {
+            "column": 3,
+            "row": 5,
+            "height": 2,
+            "width": 2
+          },
+          "title": "CLS - LOB1",
+          "rawConfiguration": {
+            "dataFormatters": [],
+            "nrqlQueries": [
+              {
+                "accountId": ACCOUNT_ID1,
+                "query": "FROM PageViewTiming SELECT percentile(cumulativeLayoutShift, 75) SINCE 1 week AGO COMPARE WITH 1 WEEK AGO WHERE LOB1_PAGEVIEW_FILTER"
+              }
+            ],
+            "thresholds": []
+          },
+          "linkedEntityGuids": null
+        },
+        {
+          "visualization": {
+            "id": "viz.markdown"
+          },
+          "layout": {
+            "column": 5,
+            "row": 5,
+            "height": 2,
+            "width": 2
+          },
+          "title": "",
+          "rawConfiguration": {
+            "text": "\n![Add Images](https://web-dev.imgix.net/image/tcFciHGuF3MxnTr1y5ue01OGLBn2/ZZU8Z7TMKXmzZT2mCjJU.svg)\n"
+          },
+          "linkedEntityGuids": null
+        },
+        {
+          "visualization": {
+            "id": "viz.billboard"
+          },
+          "layout": {
+            "column": 7,
+            "row": 5,
+            "height": 2,
+            "width": 2
+          },
+          "title": "LCP - LOB1",
+          "rawConfiguration": {
+            "dataFormatters": [],
+            "nrqlQueries": [
+              {
+                "accountId": ACCOUNT_ID1,
+                "query": "FROM  PageViewTiming SELECT percentile(largestContentfulPaint, 75) SINCE 1 week AGO COMPARE WITH 1 WEEK AGO WHERE LOB1_PAGEVIEW_FILTER"
+              }
+            ],
+            "thresholds": []
+          },
+          "linkedEntityGuids": null
+        },
+        {
+          "visualization": {
+            "id": "viz.markdown"
+          },
+          "layout": {
+            "column": 9,
+            "row": 5,
+            "height": 2,
+            "width": 2
+          },
+          "title": "",
+          "rawConfiguration": {
+            "text": "* ![Add Images](https://web-dev.imgix.net/image/tcFciHGuF3MxnTr1y5ue01OGLBn2/iHYrrXKe4QRcb2uu8eV8.svg)"
+          },
+          "linkedEntityGuids": null
+        },
+        {
+          "visualization": {
+            "id": "viz.billboard"
+          },
+          "layout": {
+            "column": 11,
+            "row": 5,
+            "height": 2,
+            "width": 2
+          },
+          "title": "FID - LOB1",
+          "rawConfiguration": {
+            "dataFormatters": [],
+            "nrqlQueries": [
+              {
+                "accountId": ACCOUNT_ID1,
+                "query": "FROM PageViewTiming SELECT percentile(firstInputDelay, 75) SINCE 1 week AGO COMPARE WITH 1 WEEK AGO WHERE LOB1_PAGEVIEW_FILTER"
+              }
+            ],
+            "thresholds": []
+          },
+          "linkedEntityGuids": null
+        },
+        {
+          "visualization": {
+            "id": "viz.markdown"
+          },
+          "layout": {
+            "column": 1,
+            "row": 7,
+            "height": 2,
+            "width": 2
+          },
+          "title": "",
+          "rawConfiguration": {
+            "text": "# AJAX Requests\n"
+          },
+          "linkedEntityGuids": null
+        },
+        {
+          "visualization": {
+            "id": "viz.billboard"
+          },
+          "layout": {
+            "column": 3,
+            "row": 7,
+            "height": 2,
+            "width": 4
+          },
+          "title": "Duration",
+          "rawConfiguration": {
+            "dataFormatters": [],
+            "nrqlQueries": [
+              {
+                "accountId": ACCOUNT_ID1,
+                "query": "FROM AjaxRequest SELECT  percentile(timeToSettle, 75) AS 'Time to Settle' SINCE 1 week AGO COMPARE WITH 1 WEEK AGO WHERE LOB1_AJAX_FILTER"
+              }
+            ],
+            "thresholds": []
+          },
+          "linkedEntityGuids": null
+        },
+        {
+          "visualization": {
+            "id": "viz.billboard"
+          },
+          "layout": {
+            "column": 7,
+            "row": 7,
+            "height": 2,
+            "width": 2
+          },
+          "title": "Successful HTTP Requests",
+          "rawConfiguration": {
+            "dataFormatters": [],
+            "nrqlQueries": [
+              {
+                "accountId": ACCOUNT_ID1,
+                "query": "FROM AjaxRequest SELECT percentage(count(*), WHERE httpResponseCode >= 200 AND httpResponseCode <300) WHERE httpResponseCode >= 200 AND LOB1_AJAX_FILTER SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO"
+              }
+            ],
+            "thresholds": []
+          },
+          "linkedEntityGuids": null
+        },
+        {
+          "visualization": {
+            "id": "viz.billboard"
+          },
+          "layout": {
+            "column": 9,
+            "row": 7,
+            "height": 2,
+            "width": 2
+          },
+          "title": "4xx Errors",
+          "rawConfiguration": {
+            "dataFormatters": [],
+            "nrqlQueries": [
+              {
+                "accountId": ACCOUNT_ID1,
+                "query": "FROM AjaxRequest SELECT percentage(count(*), WHERE httpResponseCode >= 400 AND httpResponseCode <500) WHERE httpResponseCode >= 200 AND  LOB1_AJAX_FILTER SINCE 1 week AGO COMPARE WITH 1 week AGO"
+              }
+            ],
+            "thresholds": []
+          },
+          "linkedEntityGuids": null
+        },
+        {
+          "visualization": {
+            "id": "viz.billboard"
+          },
+          "layout": {
+            "column": 11,
+            "row": 7,
+            "height": 2,
+            "width": 2
+          },
+          "title": "5xx Errors",
+          "rawConfiguration": {
+            "dataFormatters": [],
+            "nrqlQueries": [
+              {
+                "accountId": ACCOUNT_ID1,
+                "query": "FROM AjaxRequest SELECT percentage(count(*), WHERE httpResponseCode >= 500) WHERE httpResponseCode >= 200 AND LOB1_AJAX_FILTER SINCE 1 week AGO COMPARE WITH 1 week AGO"
+              }
+            ],
+            "thresholds": []
+          },
+          "linkedEntityGuids": null
+        },
+        {
+          "visualization": {
+            "id": "viz.markdown"
+          },
+          "layout": {
+            "column": 1,
+            "row": 9,
+            "height": 2,
+            "width": 2
+          },
+          "title": "",
+          "rawConfiguration": {
+            "text": "# Javascript Errors\n"
+          },
+          "linkedEntityGuids": null
+        },
+        {
+          "visualization": {
+            "id": "viz.billboard"
+          },
+          "layout": {
+            "column": 3,
+            "row": 9,
+            "height": 2,
+            "width": 2
+          },
+          "title": "",
+          "rawConfiguration": {
+            "dataFormatters": [],
+            "nrqlQueries": [
+              {
+                "accountId": ACCOUNT_ID1,
+                "query": "SELECT count(errorClass)/count(backendDuration) AS 'Javascript Errors/PageView' FROM JavaScriptError, PageView SINCE 1 week AGO COMPARE WITH 1 week AGO WHERE LOB1_AJAX_FILTER"
+              }
+            ],
+            "thresholds": []
+          },
+          "linkedEntityGuids": null
+        }
+      ]
+    },
+    {
+      "name": "LOB2",
+      "description": null,
+      "widgets": [
+        {
+          "visualization": {
+            "id": "viz.markdown"
+          },
+          "layout": {
+            "column": 1,
+            "row": 1,
+            "height": 2,
+            "width": 2
+          },
+          "title": "",
+          "rawConfiguration": {
+            "text": "# LOB2\n\n"
+          },
+          "linkedEntityGuids": null
+        },
+        {
+          "visualization": {
+            "id": "viz.billboard"
+          },
+          "layout": {
+            "column": 3,
+            "row": 1,
+            "height": 2,
+            "width": 4
+          },
+          "title": "LOB2 PageViews",
+          "rawConfiguration": {
+            "dataFormatters": [],
+            "nrqlQueries": [
+              {
+                "accountId": ACCOUNT_ID2,
+                "query": "FROM PageView SELECT count(*) SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO WHERE LOB2_PAGEVIEW_FILTER"
+              }
+            ],
+            "thresholds": []
+          },
+          "linkedEntityGuids": null
+        },
+        {
+          "visualization": {
+            "id": "viz.pie"
+          },
+          "layout": {
+            "column": 7,
+            "row": 1,
+            "height": 2,
+            "width": 4
+          },
+          "title": "Filter by Device Type",
+          "rawConfiguration": {
+            "dataFormatters": [],
+            "facet": {
+              "showOtherSeries": false
+            },
+            "nrqlQueries": [
+              {
+                "accountId": ACCOUNT_ID2,
+                "query": "FROM PageView SELECT count(*) WHERE LOB2_PAGEVIEW_FILTER FACET deviceType SINCE 1 WEEK AGO"
+              }
+            ]
+          },
+          "linkedEntityGuids": [
+            "MjQ5MjEyN3xWSVp8REFTSEJPQVJEfDIxMjUyODQ"
+          ]
+        },
+        {
+          "visualization": {
+            "id": "viz.table"
+          },
+          "layout": {
+            "column": 11,
+            "row": 1,
+            "height": 2,
+            "width": 2
+          },
+          "title": "Filter by Country",
+          "rawConfiguration": {
+            "dataFormatters": [],
+            "facet": {
+              "showOtherSeries": true
+            },
+            "nrqlQueries": [
+              {
+                "accountId": ACCOUNT_ID2,
+                "query": "FROM PageView SELECT count(*) WHERE LOB2_PAGEVIEW_FILTER FACET countryCode SINCE 1 WEEK AGO"
+              }
+            ]
+          },
+          "linkedEntityGuids": [
+            "MjQ5MjEyN3xWSVp8REFTSEJPQVJEfDIxMjUyODQ"
+          ]
+        },
+        {
+          "visualization": {
+            "id": "viz.line"
+          },
+          "layout": {
+            "column": 1,
+            "row": 3,
+            "height": 2,
+            "width": 6
+          },
+          "title": "Failed Synthetic Checks - LOB2_SYNTH1_MONITOR",
+          "rawConfiguration": {
+            "dataFormatters": [],
+            "legend": {
+              "enabled": true
+            },
+            "nrqlQueries": [
+              {
+                "accountId": ACCOUNT_ID2,
+                "query": "FROM SyntheticCheck SELECT percentage(count(*),WHERE result = 'FAILED') WHERE monitorName = 'LOB2_SYNTH1_MONITOR' SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO TIMESERIES AUTO"
+              }
+            ],
+            "yAxisLeft": {
+              "zero": true
+            }
+          },
+          "linkedEntityGuids": null
+        },
+        {
+          "visualization": {
+            "id": "viz.line"
+          },
+          "layout": {
+            "column": 7,
+            "row": 3,
+            "height": 2,
+            "width": 6
+          },
+          "title": "Failed Synthetic Checks - LOB2_SYNTH2_MONITOR",
+          "rawConfiguration": {
+            "dataFormatters": [],
+            "legend": {
+              "enabled": true
+            },
+            "nrqlQueries": [
+              {
+                "accountId": ACCOUNT_ID2,
+                "query": "FROM SyntheticCheck SELECT percentage(count(*),WHERE result = 'FAILED') WHERE monitorName = 'LOB2_SYNTH2_MONITOR' SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO TIMESERIES AUTO"
+              }
+            ],
+            "yAxisLeft": {
+              "zero": true
+            }
+          },
+          "linkedEntityGuids": null
+        },
+        {
+          "visualization": {
+            "id": "viz.markdown"
+          },
+          "layout": {
+            "column": 1,
+            "row": 5,
+            "height": 2,
+            "width": 2
+          },
+          "title": "",
+          "rawConfiguration": {
+            "text": "![Add Images](https://web-dev.imgix.net/image/tcFciHGuF3MxnTr1y5ue01OGLBn2/dgpDFckbHwwOKdIGDa3N.svg)"
+          },
+          "linkedEntityGuids": null
+        },
+        {
+          "visualization": {
+            "id": "viz.billboard"
+          },
+          "layout": {
+            "column": 3,
+            "row": 5,
+            "height": 2,
+            "width": 2
+          },
+          "title": "CLS - LOB2",
+          "rawConfiguration": {
+            "dataFormatters": [],
+            "nrqlQueries": [
+              {
+                "accountId": ACCOUNT_ID2,
+                "query": "FROM PageViewTiming SELECT percentile(cumulativeLayoutShift, 75) SINCE 1 week AGO COMPARE WITH 1 WEEK AGO WHERE LOB2_PAGEVIEW_FILTER"
+              }
+            ],
+            "thresholds": []
+          },
+          "linkedEntityGuids": null
+        },
+        {
+          "visualization": {
+            "id": "viz.markdown"
+          },
+          "layout": {
+            "column": 5,
+            "row": 5,
+            "height": 2,
+            "width": 2
+          },
+          "title": "",
+          "rawConfiguration": {
+            "text": "\n![Add Images](https://web-dev.imgix.net/image/tcFciHGuF3MxnTr1y5ue01OGLBn2/ZZU8Z7TMKXmzZT2mCjJU.svg)\n"
+          },
+          "linkedEntityGuids": null
+        },
+        {
+          "visualization": {
+            "id": "viz.billboard"
+          },
+          "layout": {
+            "column": 7,
+            "row": 5,
+            "height": 2,
+            "width": 2
+          },
+          "title": "LCP - LOB2",
+          "rawConfiguration": {
+            "dataFormatters": [],
+            "nrqlQueries": [
+              {
+                "accountId": ACCOUNT_ID2,
+                "query": "FROM  PageViewTiming SELECT percentile(largestContentfulPaint, 75) SINCE 1 week AGO COMPARE WITH 1 WEEK AGO WHERE LOB2_PAGEVIEW_FILTER"
+              }
+            ],
+            "thresholds": []
+          },
+          "linkedEntityGuids": null
+        },
+        {
+          "visualization": {
+            "id": "viz.markdown"
+          },
+          "layout": {
+            "column": 9,
+            "row": 5,
+            "height": 2,
+            "width": 2
+          },
+          "title": "",
+          "rawConfiguration": {
+            "text": "* ![Add Images](https://web-dev.imgix.net/image/tcFciHGuF3MxnTr1y5ue01OGLBn2/iHYrrXKe4QRcb2uu8eV8.svg)"
+          },
+          "linkedEntityGuids": null
+        },
+        {
+          "visualization": {
+            "id": "viz.billboard"
+          },
+          "layout": {
+            "column": 11,
+            "row": 5,
+            "height": 2,
+            "width": 2
+          },
+          "title": "FID - LOB2",
+          "rawConfiguration": {
+            "dataFormatters": [],
+            "nrqlQueries": [
+              {
+                "accountId": ACCOUNT_ID2,
+                "query": "FROM PageViewTiming SELECT percentile(firstInputDelay, 75) SINCE 1 week AGO COMPARE WITH 1 WEEK AGO WHERE LOB2_PAGEVIEW_FILTER"
+              }
+            ],
+            "thresholds": []
+          },
+          "linkedEntityGuids": null
+        },
+        {
+          "visualization": {
+            "id": "viz.markdown"
+          },
+          "layout": {
+            "column": 1,
+            "row": 7,
+            "height": 2,
+            "width": 2
+          },
+          "title": "",
+          "rawConfiguration": {
+            "text": "# AJAX Requests\n"
+          },
+          "linkedEntityGuids": null
+        },
+        {
+          "visualization": {
+            "id": "viz.billboard"
+          },
+          "layout": {
+            "column": 3,
+            "row": 7,
+            "height": 2,
+            "width": 4
+          },
+          "title": "Duration",
+          "rawConfiguration": {
+            "dataFormatters": [],
+            "nrqlQueries": [
+              {
+                "accountId": ACCOUNT_ID2,
+                "query": "FROM AjaxRequest SELECT  percentile(timeToSettle, 75) AS 'Time to Settle' SINCE 1 week AGO COMPARE WITH 1 WEEK AGO WHERE LOB2_AJAX_FILTER"
+              }
+            ],
+            "thresholds": []
+          },
+          "linkedEntityGuids": null
+        },
+        {
+          "visualization": {
+            "id": "viz.billboard"
+          },
+          "layout": {
+            "column": 7,
+            "row": 7,
+            "height": 2,
+            "width": 2
+          },
+          "title": "Successful HTTP Requests",
+          "rawConfiguration": {
+            "dataFormatters": [],
+            "nrqlQueries": [
+              {
+                "accountId": ACCOUNT_ID2,
+                "query": "FROM AjaxRequest SELECT percentage(count(*), WHERE httpResponseCode >= 200 AND httpResponseCode <300) WHERE httpResponseCode >= 200 AND LOB2_AJAX_FILTER SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO"
+              }
+            ],
+            "thresholds": []
+          },
+          "linkedEntityGuids": null
+        },
+        {
+          "visualization": {
+            "id": "viz.billboard"
+          },
+          "layout": {
+            "column": 9,
+            "row": 7,
+            "height": 2,
+            "width": 2
+          },
+          "title": "4xx Errors",
+          "rawConfiguration": {
+            "dataFormatters": [],
+            "nrqlQueries": [
+              {
+                "accountId": ACCOUNT_ID2,
+                "query": "FROM AjaxRequest SELECT percentage(count(*), WHERE httpResponseCode >= 400 AND httpResponseCode <500) WHERE httpResponseCode >= 200 AND  LOB2_AJAX_FILTER SINCE 1 week AGO COMPARE WITH 1 week AGO"
+              }
+            ],
+            "thresholds": []
+          },
+          "linkedEntityGuids": null
+        },
+        {
+          "visualization": {
+            "id": "viz.billboard"
+          },
+          "layout": {
+            "column": 11,
+            "row": 7,
+            "height": 2,
+            "width": 2
+          },
+          "title": "5xx Errors",
+          "rawConfiguration": {
+            "dataFormatters": [],
+            "nrqlQueries": [
+              {
+                "accountId": ACCOUNT_ID2,
+                "query": "FROM AjaxRequest SELECT percentage(count(*), WHERE httpResponseCode >= 500) WHERE httpResponseCode >= 200 AND LOB2_AJAX_FILTER SINCE 1 week AGO COMPARE WITH 1 week AGO"
+              }
+            ],
+            "thresholds": []
+          },
+          "linkedEntityGuids": null
+        },
+        {
+          "visualization": {
+            "id": "viz.markdown"
+          },
+          "layout": {
+            "column": 1,
+            "row": 9,
+            "height": 2,
+            "width": 2
+          },
+          "title": "",
+          "rawConfiguration": {
+            "text": "# Javascript Errors\n"
+          },
+          "linkedEntityGuids": null
+        },
+        {
+          "visualization": {
+            "id": "viz.billboard"
+          },
+          "layout": {
+            "column": 3,
+            "row": 9,
+            "height": 2,
+            "width": 2
+          },
+          "title": "",
+          "rawConfiguration": {
+            "dataFormatters": [],
+            "nrqlQueries": [
+              {
+                "accountId": ACCOUNT_ID2,
+                "query": "SELECT count(errorClass)/count(backendDuration) AS 'Javascript Errors/PageView' FROM JavaScriptError, PageView SINCE 1 week AGO COMPARE WITH 1 week AGO WHERE LOB2_AJAX_FILTER"
+              }
+            ],
+            "thresholds": []
+          },
+          "linkedEntityGuids": null
+        }
+      ]
+    }
+  ]
+}
