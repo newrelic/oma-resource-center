@@ -43,4 +43,16 @@ The attributes below have the same definitions as above, but with values that ma
 
  4. Review results.  Add/remove dashboard widgets as needed
  5. Done
+
+## Quality Foundation KPI Measurement Instructions
+
+![Quality Foundation KPI example](images/CustomerExperience_QualityFoundation_KPIs.png?raw=true "Cx Quality Foundation KPIs")
+
+The CustomerExperience_QualityFoundation_KPI document provides a way to measure baselines and track progress while improving KPI performance.
+
+1. Start with the format that works best for you, .ods, or .xls
+2. Capture the current baseline for all your lines of business pages without further filtering.  Identify what needs improving and to what extent by highlighting it in yellow or red.  Highlight the rest in green.
+3. Use other filters, as applicable, to identify other KPIs that need improving.  Capture only those that you plan to actively work on or measure.   Examples include KPIs filtered to mobile users where improvement is needed and impactful to the business.
+4. Update KPI numbers weekly or after each sprint.  
+5. Be aware of how long data is retained.  The KPI spreadsheet needs to be updated before retention of relevant data expires.
  
