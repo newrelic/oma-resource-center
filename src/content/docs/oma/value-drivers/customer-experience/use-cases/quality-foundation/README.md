@@ -3,7 +3,7 @@
 
 ## Quality Foundation Dashboard Instructions
 
-![Quality Foundation Dashboard example](images/CustomerExperience_QualityFoundation.png?raw=true "Insights")
+![Quality Foundation Dashboard example](images/CustomerExperience_QualityFoundation.png?raw=true "Cx Quality Foundation")
 
 The Customer Experience dashboard measures the customer experience for each line of business (LOB) or global function (login, search) in different pages. This approach aligns customer experience with business intiatives. 
 
@@ -38,7 +38,9 @@ The attributes below have the same definitions as above, but with values that ma
 | **LOB2_PAGEVIEW_FILTER** |
 | **LOB2_AJAX_FILTER** |
 
- 3. Import the JSON 
+ 3. Import the JSON as a new Dashboard via the main Dashboards menu.
+![Dashboard import](images/ImportDashboard.png?raw=true "Dashboard import")
+
  4. Review results.  Add/remove dashboard widgets as needed
  5. Done
  
