@@ -9,7 +9,7 @@ The Bottom of the Funnel Analysis dashboard measures the customer experience dur
  
 1. Follow the steps in <docs link> to determine steps in the user journey that you will measure
 
-2. Download the ![dashboard json](botf.json). 
+2. Download the [dashboard json](botf.json). 
 
 3. Edit botf.json and change ACCOUNT_ID to the account id that you will run most of the queries from.
 
@@ -32,7 +32,7 @@ The structure of the funnel query is as follows: <br>
   SELECT funnel(COMMON_ATTRIBUTE, WHERE .. ACTION_A, .., WHERE .. ACTION_N) <br>
   SINCE 1 WEEK AGO <br>
 
-COMMON_ATTRIBUTE - usually set to session.  You can capture conversions that happen over multiple sessions, by adding ![custom attributes](https://docs.newrelic.com/docs/browser/new-relic-browser/browser-agent-spa-api/setcustomattribute-browser-agent-api/), like customerId, to your PageViews.  This is provided your user is not anonymous. 
+COMMON_ATTRIBUTE - usually set to session.  You can capture conversions that happen over multiple sessions, by adding [custom attributes](https://docs.newrelic.com/docs/browser/new-relic-browser/browser-agent-spa-api/setcustomattribute-browser-agent-api/), like customerId, to your PageViews.  This is provided your user is not anonymous. 
 
 WHERE … ACTION - filters for the PageViews relevant to that step in the user’s journey.  
 
@@ -53,7 +53,7 @@ As the funnel query pulls from a single data type, you won’t be able to includ
 Change BOTF_MONITOR_NAME to match the synthetics monitor that validates the bottom of the funnel.  This is covered in [!Doc Coming Soon}().
 
 #### Revenue at Risk - Latency
-REVENUE_AT_RISK_LATENCY_FILTER - You can filter both related pages and Ajax Requests using pageUrl.  The ![pageUrl value in an AjaxRequest](https://docs.newrelic.com/attribute-dictionary/?dataSource=Browser+agent&event=AjaxRequest&attributeSearch=pageUrl) reflects the page the user was on when they initiated the request.  
+REVENUE_AT_RISK_LATENCY_FILTER - You can filter both related pages and Ajax Requests using pageUrl.  The [pageUrl value in an AjaxRequest](https://docs.newrelic.com/attribute-dictionary/?dataSource=Browser+agent&event=AjaxRequest&attributeSearch=pageUrl) reflects the page the user was on when they initiated the request.  
 
 CONVERSION_VALUE - set this to what your organization considers the average value of a conversion.  Conversely, using custom attributes, you can change the query to be more specific and use the value of what the end user is about to purchase.   
 
