@@ -102,7 +102,17 @@ __Success % Query__<br>
 * Uses AjaxRequest
 * STEP2_AJAX_REQUEST_FILTER - Typically set to filter by web app name and the pageUrl that the AjaxRequest is invoked from
 
+## Bottom of the Funnel KPI Measurement Instructions
 
+![Bottom of the Funnel KPIs](images/CustomerExperience_Botf_KPIs.png?raw=true "Cx Bottom of the Funnel KPIs")
+
+The CustomerExperience_BotFAnalysis document provides a way to measure baselines and track progress while improving KPI performance.
+
+1. Start with the format that works best for you, .ods, or .xls
+2. Capture the current baseline.  Identify what needs improving and to what extent by highlighting it in yellow or red.  Highlight the rest in green.
+3. Use other filters, as applicable, to identify other KPIs that need improving.  Capture only those that you plan to actively work on or measure.   Examples include KPIs filtered to mobile users where improvement is needed and impactful to the business.
+4. Update KPI numbers weekly or after each sprint.  
+5. Be aware of how long data is retained.  The KPI spreadsheet needs to be updated before retention of relevant data expires.
  
 
 
