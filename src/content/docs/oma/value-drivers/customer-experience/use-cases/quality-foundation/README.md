@@ -39,7 +39,7 @@ The attributes below have the same definitions as above, but with values that ma
 | **LOB2_AJAX_FILTER** |
 
  3. Import the JSON as a new Dashboard via the main Dashboards menu.
-![Dashboard import](images/ImportDashboard.png?raw=true "Dashboard import")
+![Dashboard import](../images/ImportDashboard.png?raw=true "Dashboard import")
 
  4. Review results.  Add/remove dashboard widgets as needed
  5. Done
