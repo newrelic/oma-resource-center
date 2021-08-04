@@ -31,9 +31,9 @@
             "column": 3,
             "row": 1,
             "height": 2,
-            "width": 4
+            "width": 2
           },
-          "title": "LOB1 PageViews",
+          "title": "LOB1 Page Views",
           "rawConfiguration": {
             "dataFormatters": [],
             "nrqlQueries": [
@@ -51,12 +51,12 @@
             "id": "viz.pie"
           },
           "layout": {
-            "column": 7,
+            "column": 5,
             "row": 1,
             "height": 2,
-            "width": 4
+            "width": 2
           },
-          "title": "Filter by Device Type",
+          "title": "Page Views by Device Type",
           "rawConfiguration": {
             "dataFormatters": [],
             "facet": {
@@ -65,7 +65,7 @@
             "nrqlQueries": [
               {
                 "accountId": ACCOUNT_ID1,
-                "query": "FROM PageView SELECT count(*) WHERE LOB1_PAGEVIEW_FILTER FACET deviceType SINCE 1 WEEK AGO"
+                "query": "SELECT count(*) FROM PageView WHERE LOB1_PAGEVIEW_FILTER FACET deviceType SINCE 1 WEEK AGO"
               }
             ]
           },
@@ -78,12 +78,12 @@
             "id": "viz.table"
           },
           "layout": {
-            "column": 11,
+            "column": 7,
             "row": 1,
             "height": 2,
             "width": 2
           },
-          "title": "Filter by Country",
+          "title": "Page Views by Country",
           "rawConfiguration": {
             "dataFormatters": [],
             "facet": {
@@ -92,13 +92,41 @@
             "nrqlQueries": [
               {
                 "accountId": ACCOUNT_ID1,
-                "query": "FROM PageView SELECT count(*) WHERE LOB1_PAGEVIEW_FILTER FACET countryCode SINCE 1 WEEK AGO"
+                "query": "SELECT count(*) FROM PageView WHERE LOB1_PAGEVIEW_FILTER FACET countryCode SINCE 1 WEEK AGO"
               }
             ]
           },
           "linkedEntityGuids": [
             "MjQ5MjEyN3xWSVp8REFTSEJPQVJEfDIxMjUyODQ"
           ]
+        },
+        {
+          "visualization": {
+            "id": "viz.line"
+          },
+          "layout": {
+            "column": 9,
+            "row": 1,
+            "height": 2,
+            "width": 4
+          },
+          "title": "Time to first byte",
+          "rawConfiguration": {
+            "dataFormatters": [],
+            "legend": {
+              "enabled": true
+            },
+            "nrqlQueries": [
+              {
+                "accountId": ACCOUNT_ID1,
+                "query": "FROM PageView SELECT 0.5 AS 'Target Maximum', percentile(backendDuration, 75) AS 'TTFB' WHERE LOB1_PAGEVIEW_FILTER SINCE 1 WEEK AGO TIMESERIES AUTO"
+              }
+            ],
+            "yAxisLeft": {
+              "zero": true
+            }
+          },
+          "linkedEntityGuids": null
         },
         {
           "visualization": {
@@ -119,7 +147,7 @@
             "nrqlQueries": [
               {
                 "accountId": ACCOUNT_ID1,
-                "query": "FROM SyntheticCheck SELECT percentage(count(*),WHERE result = 'FAILED') WHERE monitorName = 'LOB1_SYNTH1_MONITOR' SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO TIMESERIES AUTO"
+                "query": "FROM SyntheticCheck select percentage(count(*),WHERE result = 'FAILED') where monitorName = 'LOB1_SYNTH1_MONITOR' SINCE 1 WEEK AGO COMPARE WITH 1 WEEK ago TIMESERIES AUTO"
               }
             ],
             "yAxisLeft": {
@@ -147,7 +175,7 @@
             "nrqlQueries": [
               {
                 "accountId": ACCOUNT_ID1,
-                "query": "FROM SyntheticCheck SELECT percentage(count(*),WHERE result = 'FAILED') WHERE monitorName = 'LOB1_SYNTH2_MONITOR' SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO TIMESERIES AUTO"
+                "query": "FROM SyntheticCheck select percentage(count(*),WHERE result = 'FAILED') where monitorName = 'LOB1_SYNTH2_MONITOR' SINCE 1 WEEK AGO COMPARE WITH 1 WEEK ago TIMESERIES AUTO"
               }
             ],
             "yAxisLeft": {
@@ -188,7 +216,7 @@
             "nrqlQueries": [
               {
                 "accountId": ACCOUNT_ID1,
-                "query": "FROM PageViewTiming SELECT percentile(cumulativeLayoutShift, 75) SINCE 1 week AGO COMPARE WITH 1 WEEK AGO WHERE LOB1_PAGEVIEW_FILTER"
+                "query": "FROM PageViewTiming SELECT percentile(cumulativeLayoutShift, 75) SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO WHERE LOB1_PAGEVIEW_FILTER"
               }
             ],
             "thresholds": []
@@ -227,7 +255,7 @@
             "nrqlQueries": [
               {
                 "accountId": ACCOUNT_ID1,
-                "query": "FROM  PageViewTiming SELECT percentile(largestContentfulPaint, 75) SINCE 1 week AGO COMPARE WITH 1 WEEK AGO WHERE LOB1_PAGEVIEW_FILTER"
+                "query": "FROM PageViewTiming SELECT percentile(largestContentfulPaint, 75) SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO WHERE LOB1_PAGEVIEW_FILTER"
               }
             ],
             "thresholds": []
@@ -266,7 +294,7 @@
             "nrqlQueries": [
               {
                 "accountId": ACCOUNT_ID1,
-                "query": "FROM PageViewTiming SELECT percentile(firstInputDelay, 75) SINCE 1 week AGO COMPARE WITH 1 WEEK AGO WHERE LOB1_PAGEVIEW_FILTER"
+                "query": "FROM PageViewTiming SELECT percentile(firstInputDelay, 75) SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO WHERE LOB1_PAGEVIEW_FILTER"
               }
             ],
             "thresholds": []
@@ -305,7 +333,7 @@
             "nrqlQueries": [
               {
                 "accountId": ACCOUNT_ID1,
-                "query": "FROM AjaxRequest SELECT  percentile(timeToSettle, 75) AS 'Time to Settle' SINCE 1 week AGO COMPARE WITH 1 WEEK AGO WHERE LOB1_AJAX_FILTER"
+                "query": "FROM AjaxRequest SELECT percentile(timeToSettle, 75) AS 'Time to Settle' WHERE LOB1_AJAX_FILTER SINCE 1 WEEK AGO COMPARE WITH 1 WEEK ago"
               }
             ],
             "thresholds": []
@@ -322,7 +350,7 @@
             "height": 2,
             "width": 2
           },
-          "title": "Successful HTTP Requests",
+          "title": "2xx Responses",
           "rawConfiguration": {
             "dataFormatters": [],
             "nrqlQueries": [
@@ -345,13 +373,13 @@
             "height": 2,
             "width": 2
           },
-          "title": "4xx Errors",
+          "title": "4xx Responses",
           "rawConfiguration": {
             "dataFormatters": [],
             "nrqlQueries": [
               {
                 "accountId": ACCOUNT_ID1,
-                "query": "FROM AjaxRequest SELECT percentage(count(*), WHERE httpResponseCode >= 400 AND httpResponseCode <500) WHERE httpResponseCode >= 200 AND  LOB1_AJAX_FILTER SINCE 1 week AGO COMPARE WITH 1 week AGO"
+                "query": "FROM AjaxRequest SELECT percentage(count(*), WHERE httpResponseCode >= 400 AND httpResponseCode <500) WHERE httpResponseCode >= 200 AND LOB1_AJAX_FILTER SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO"
               }
             ],
             "thresholds": []
@@ -368,13 +396,13 @@
             "height": 2,
             "width": 2
           },
-          "title": "5xx Errors",
+          "title": "5xx Responses",
           "rawConfiguration": {
             "dataFormatters": [],
             "nrqlQueries": [
               {
                 "accountId": ACCOUNT_ID1,
-                "query": "FROM AjaxRequest SELECT percentage(count(*), WHERE httpResponseCode >= 500) WHERE httpResponseCode >= 200 AND LOB1_AJAX_FILTER SINCE 1 week AGO COMPARE WITH 1 week AGO"
+                "query": "FROM AjaxRequest SELECT percentage(count(*), WHERE httpResponseCode >= 500) WHERE httpResponseCode >= 200 AND LOB1_AJAX_FILTER SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO"
               }
             ],
             "thresholds": []
@@ -413,7 +441,7 @@
             "nrqlQueries": [
               {
                 "accountId": ACCOUNT_ID1,
-                "query": "SELECT count(errorClass)/count(backendDuration) AS 'Javascript Errors/PageView' FROM JavaScriptError, PageView SINCE 1 week AGO COMPARE WITH 1 week AGO WHERE LOB1_AJAX_FILTER"
+                "query": "SELECT count(errorClass)/count(backendDuration) AS 'Javascript Errors/PageView' FROM JavaScriptError, PageView SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO WHERE LOB1_AJAX_FILTER"
               }
             ],
             "thresholds": []
@@ -450,9 +478,9 @@
             "column": 3,
             "row": 1,
             "height": 2,
-            "width": 4
+            "width": 2
           },
-          "title": "LOB2 PageViews",
+          "title": "LOB2 Page Views",
           "rawConfiguration": {
             "dataFormatters": [],
             "nrqlQueries": [
@@ -470,10 +498,10 @@
             "id": "viz.pie"
           },
           "layout": {
-            "column": 7,
+            "column": 5,
             "row": 1,
             "height": 2,
-            "width": 4
+            "width": 2
           },
           "title": "Filter by Device Type",
           "rawConfiguration": {
@@ -484,7 +512,7 @@
             "nrqlQueries": [
               {
                 "accountId": ACCOUNT_ID2,
-                "query": "FROM PageView SELECT count(*) WHERE LOB2_PAGEVIEW_FILTER FACET deviceType SINCE 1 WEEK AGO"
+                "query": "SELECT count(*) FROM PageView WHERE LOB2_PAGEVIEW_FILTER FACET deviceType SINCE 1 WEEK AGO"
               }
             ]
           },
@@ -497,7 +525,7 @@
             "id": "viz.table"
           },
           "layout": {
-            "column": 11,
+            "column": 7,
             "row": 1,
             "height": 2,
             "width": 2
@@ -511,13 +539,40 @@
             "nrqlQueries": [
               {
                 "accountId": ACCOUNT_ID2,
-                "query": "FROM PageView SELECT count(*) WHERE LOB2_PAGEVIEW_FILTER FACET countryCode SINCE 1 WEEK AGO"
+                "query": "SELECT count(*) FROM PageView WHERE LOB2_PAGEVIEW_FILTER FACET countryCode SINCE 1 WEEK AGO"
               }
             ]
           },
           "linkedEntityGuids": [
             "MjQ5MjEyN3xWSVp8REFTSEJPQVJEfDIxMjUyODQ"
           ]
+        },
+        {
+          "visualization": {
+            "id": "viz.line"
+          },
+          "layout": {
+            "column": 9,
+            "row": 1,
+            "height": 2,
+            "width": 4
+          },
+          "title": "Time to first byte",
+          "rawConfiguration": {
+            "legend": {
+              "enabled": true
+            },
+            "nrqlQueries": [
+              {
+                "accountId": ACCOUNT_ID2,
+                "query": "FROM PageView SELECT 0.5 AS 'Target Maximum', percentile(backendDuration, 75) AS 'TTFB' WHERE LOB2_PAGEVIEW_FILTER SINCE 1 WEEK AGO TIMESERIES AUTO"
+              }
+            ],
+            "yAxisLeft": {
+              "zero": true
+            }
+          },
+          "linkedEntityGuids": null
         },
         {
           "visualization": {
@@ -538,7 +593,7 @@
             "nrqlQueries": [
               {
                 "accountId": ACCOUNT_ID2,
-                "query": "FROM SyntheticCheck SELECT percentage(count(*),WHERE result = 'FAILED') WHERE monitorName = 'LOB2_SYNTH1_MONITOR' SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO TIMESERIES AUTO"
+                "query": "FROM SyntheticCheck select percentage(count(*),WHERE result = 'FAILED') where monitorName = 'LOB2_SYNTH1_MONITOR' SINCE 1 WEEK AGO COMPARE WITH 1 WEEK ago TIMESERIES AUTO"
               }
             ],
             "yAxisLeft": {
@@ -566,7 +621,7 @@
             "nrqlQueries": [
               {
                 "accountId": ACCOUNT_ID2,
-                "query": "FROM SyntheticCheck SELECT percentage(count(*),WHERE result = 'FAILED') WHERE monitorName = 'LOB2_SYNTH2_MONITOR' SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO TIMESERIES AUTO"
+                "query": "FROM SyntheticCheck select percentage(count(*),WHERE result = 'FAILED') where monitorName = 'LOB2_SYNTH2_MONITOR' SINCE 1 WEEK AGO COMPARE WITH 1 WEEK ago TIMESERIES AUTO"
               }
             ],
             "yAxisLeft": {
@@ -607,7 +662,7 @@
             "nrqlQueries": [
               {
                 "accountId": ACCOUNT_ID2,
-                "query": "FROM PageViewTiming SELECT percentile(cumulativeLayoutShift, 75) SINCE 1 week AGO COMPARE WITH 1 WEEK AGO WHERE LOB2_PAGEVIEW_FILTER"
+                "query": "FROM PageViewTiming SELECT percentile(cumulativeLayoutShift, 75) SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO WHERE LOB2_PAGEVIEW_FILTER"
               }
             ],
             "thresholds": []
@@ -646,7 +701,7 @@
             "nrqlQueries": [
               {
                 "accountId": ACCOUNT_ID2,
-                "query": "FROM  PageViewTiming SELECT percentile(largestContentfulPaint, 75) SINCE 1 week AGO COMPARE WITH 1 WEEK AGO WHERE LOB2_PAGEVIEW_FILTER"
+                "query": "FROM PageViewTiming SELECT percentile(largestContentfulPaint, 75) SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO WHERE LOB2_PAGEVIEW_FILTER"
               }
             ],
             "thresholds": []
@@ -685,7 +740,7 @@
             "nrqlQueries": [
               {
                 "accountId": ACCOUNT_ID2,
-                "query": "FROM PageViewTiming SELECT percentile(firstInputDelay, 75) SINCE 1 week AGO COMPARE WITH 1 WEEK AGO WHERE LOB2_PAGEVIEW_FILTER"
+                "query": "FROM PageViewTiming SELECT percentile(firstInputDelay, 75) SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO WHERE LOB2_PAGEVIEW_FILTER"
               }
             ],
             "thresholds": []
@@ -724,7 +779,7 @@
             "nrqlQueries": [
               {
                 "accountId": ACCOUNT_ID2,
-                "query": "FROM AjaxRequest SELECT  percentile(timeToSettle, 75) AS 'Time to Settle' SINCE 1 week AGO COMPARE WITH 1 WEEK AGO WHERE LOB2_AJAX_FILTER"
+                "query": "FROM AjaxRequest SELECT percentile(timeToSettle, 75) AS 'Time to Settle' WHERE LOB2_AJAX_FILTER SINCE 1 WEEK AGO COMPARE WITH 1 WEEK ago"
               }
             ],
             "thresholds": []
@@ -741,7 +796,7 @@
             "height": 2,
             "width": 2
           },
-          "title": "Successful HTTP Requests",
+          "title": "2xx Responses",
           "rawConfiguration": {
             "dataFormatters": [],
             "nrqlQueries": [
@@ -764,13 +819,13 @@
             "height": 2,
             "width": 2
           },
-          "title": "4xx Errors",
+          "title": "4xx Responses",
           "rawConfiguration": {
             "dataFormatters": [],
             "nrqlQueries": [
               {
                 "accountId": ACCOUNT_ID2,
-                "query": "FROM AjaxRequest SELECT percentage(count(*), WHERE httpResponseCode >= 400 AND httpResponseCode <500) WHERE httpResponseCode >= 200 AND  LOB2_AJAX_FILTER SINCE 1 week AGO COMPARE WITH 1 week AGO"
+                "query": "FROM AjaxRequest SELECT percentage(count(*), WHERE httpResponseCode >= 400 AND httpResponseCode <500) WHERE httpResponseCode >= 200 AND LOB2_AJAX_FILTER SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO"
               }
             ],
             "thresholds": []
@@ -787,13 +842,13 @@
             "height": 2,
             "width": 2
           },
-          "title": "5xx Errors",
+          "title": "5xx Responses",
           "rawConfiguration": {
             "dataFormatters": [],
             "nrqlQueries": [
               {
                 "accountId": ACCOUNT_ID2,
-                "query": "FROM AjaxRequest SELECT percentage(count(*), WHERE httpResponseCode >= 500) WHERE httpResponseCode >= 200 AND LOB2_AJAX_FILTER SINCE 1 week AGO COMPARE WITH 1 week AGO"
+                "query": "FROM AjaxRequest SELECT percentage(count(*), WHERE httpResponseCode >= 500) WHERE httpResponseCode >= 200 AND LOB2_AJAX_FILTER SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO"
               }
             ],
             "thresholds": []
@@ -832,7 +887,7 @@
             "nrqlQueries": [
               {
                 "accountId": ACCOUNT_ID2,
-                "query": "SELECT count(errorClass)/count(backendDuration) AS 'Javascript Errors/PageView' FROM JavaScriptError, PageView SINCE 1 week AGO COMPARE WITH 1 week AGO WHERE LOB2_AJAX_FILTER"
+                "query": "SELECT count(errorClass)/count(backendDuration) AS 'Javascript Errors/PageView' FROM JavaScriptError, PageView SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO WHERE LOB2_AJAX_FILTER"
               }
             ],
             "thresholds": []
