@@ -1,10 +1,10 @@
 {
-  "name": "Customer Experience - Bottom of the Funnel Analysis",
+  "name": "OMA - Customer Experience - Bottom of the Funnel Analysis",
   "description": null,
   "permissions": "PUBLIC_READ_WRITE",
   "pages": [
     {
-      "name": "Customer Experience - Bottom of the Funnel Analysis",
+      "name": "OMA - Customer Experience - Bottom of the Funnel Analysis",
       "description": null,
       "widgets": [
         {
@@ -19,7 +19,7 @@
           },
           "title": "",
           "rawConfiguration": {
-            "text": "# BOTTOM_OF_THE_FLOW_NAME \n## Bottom of the Funnel Analysis\n"
+            "text": "# Begin Checkout -> Confirm Order\n## Bottom of the Funnel Analysis\n"
           },
           "linkedEntityGuids": null
         },
@@ -37,8 +37,8 @@
           "rawConfiguration": {
             "nrqlQueries": [
               {
-                "accountId": ACCOUNT_ID,
-                "query": "SELECT funnel(username, WHERE PAGE1_FILTER AS 'STEP1_NAME', WHERE PAGEN_FILTER AS 'STEPN_NAME') FROM PageView SINCE 1 WEEK AGO"
+                "accountId": 1606862,
+                "query": "SELECT funnel(username, WHERE pageUrl like '%shoppingcart%' AS 'Begin Checkout', WHERE pageUrl like '%checkout%' AS 'Order Confirmed') from PageView since 1 week ago"
               }
             ]
           },
@@ -61,8 +61,8 @@
             },
             "nrqlQueries": [
               {
-                "accountId": ACCOUNT_ID,
-                "query": "FROM SyntheticCheck select percentage(count(*),WHERE result = 'FAILED') where monitorName = 'BOTF_MONITOR_NAME' SINCE 1 WEEK AGO COMPARE WITH 1 WEEK ago TIMESERIES AUTO"
+                "accountId": 1606862,
+                "query": "FROM SyntheticCheck select percentage(count(*),WHERE result = 'FAILED') where monitorName = 'Verify all APIs are working' since 1 week ago COMPARE WITH 1 week ago TIMESERIES AUTO"
               }
             ],
             "yAxisLeft": {
@@ -86,8 +86,8 @@
             "dataFormatters": [],
             "nrqlQueries": [
               {
-                "accountId": ACCOUNT_ID,
-                "query": "SELECT count(*) * (6.2) AS USD FROM PageView, AjaxRequest  WHERE REVENUE_AT_RISK_LATENCY_FILTER AND  (timeToSettle > 2.0 OR firstContentfulPaint > 1.0) SINCE 1 WEEK AGO compare with 1 WEEK ago"
+                "accountId": 1606862,
+                "query": "SELECT count(*) * (6.2) AS USD FROM PageView, AjaxRequest  WHERE pageUrl LIKE '%shoppingcart%' AND  (timeToSettle > 2.0 OR backendDuration > 0.5) since 1 week ago compare with 1 week ago"
               }
             ],
             "thresholds": []
@@ -109,8 +109,8 @@
             "dataFormatters": [],
             "nrqlQueries": [
               {
-                "accountId": ACCOUNT_ID,
-                "query": "FROM AjaxRequest SELECT count(*) * 6.2 AS USD WHERE httpResponseCode >= 300 AND appName ='WebPortal' AND REVENUE_AT_RISK_ERRORS_FILTER SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO"
+                "accountId": 1606862,
+                "query": "FROM AjaxRequest SELECT count(*) * 6.2 AS USD WHERE httpResponseCode >= 300 AND appName ='WebPortal' and pageUrl like '%shoppingcart%' SINCE 1 week AGO COMPARE WITH 1 week AGO"
               }
             ],
             "thresholds": []
@@ -129,7 +129,7 @@
           },
           "title": "",
           "rawConfiguration": {
-            "text": "# 1. STEP1_NAME \n## Page Performance\n"
+            "text": "# 1. Begin Checkout \n## Page Performance\n"
           },
           "linkedEntityGuids": null
         },
@@ -143,13 +143,13 @@
             "height": 2,
             "width": 2
           },
-          "title": "STEP1_NAME FirstPaint (s)",
+          "title": "Begin Checkout TTFB",
           "rawConfiguration": {
             "dataFormatters": [],
             "nrqlQueries": [
               {
-                "accountId": ACCOUNT_ID,
-                "query": "SELECT percentile(firstPaint, 75) FROM PageViewTiming WHERE STEP1_FILTER SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO"
+                "accountId": 1606862,
+                "query": "FROM PageView SELECT percentile(backendDuration, 75) AS 'TTFB' WHERE pageUrl LIKE '%shopping%' SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO"
               }
             ],
             "thresholds": []
@@ -166,13 +166,13 @@
             "height": 2,
             "width": 2
           },
-          "title": "STEP1_NAME LCP (s)",
+          "title": "Begin Checkout LCP (s)",
           "rawConfiguration": {
             "dataFormatters": [],
             "nrqlQueries": [
               {
-                "accountId": ACCOUNT_ID,
-                "query": "SELECT percentile(largestContentfulPaint, 75) FROM PageViewTiming WHERE STEP1_FILTER SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO"
+                "accountId": 1606862,
+                "query": "SELECT percentile(largestContentfulPaint, 75) FROM PageViewTiming WHERE pageUrl LIKE '%shopping%' SINCE 1 week AGO COMPARE WITH 1 WEEK AGO"
               }
             ],
             "thresholds": []
@@ -189,13 +189,13 @@
             "height": 2,
             "width": 2
           },
-          "title": "STEP1_NAME CLS (score)",
+          "title": "Begin Checkout CLS (score)",
           "rawConfiguration": {
             "dataFormatters": [],
             "nrqlQueries": [
               {
-                "accountId": ACCOUNT_ID,
-                "query": "SELECT percentile(cumulativeLayoutShift, 75) FROM PageViewTiming WHERE STEP1_FILTER SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO"
+                "accountId": 1606862,
+                "query": "SELECT percentile(cumulativeLayoutShift, 75) FROM PageViewTiming WHERE pageUrl LIKE '%shopping%' SINCE 1 week AGO COMPARE WITH 1 WEEK AGO"
               }
             ],
             "thresholds": []
@@ -212,13 +212,13 @@
             "height": 2,
             "width": 2
           },
-          "title": "STEP1_NAME FirstInputDelay (ms)",
+          "title": "Begin Checkout FirstInputDelay (ms)",
           "rawConfiguration": {
             "dataFormatters": [],
             "nrqlQueries": [
               {
-                "accountId": ACCOUNT_ID,
-                "query": "SELECT percentile(firstInputDelay, 75) FROM PageViewTiming WHERE STEP1_FILTER SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO"
+                "accountId": 1606862,
+                "query": "SELECT percentile(firstInputDelay, 75) FROM PageViewTiming WHERE pageUrl LIKE '%shopping%' SINCE 1 week AGO COMPARE WITH 1 WEEK AGO"
               }
             ],
             "thresholds": []
@@ -237,7 +237,7 @@
           },
           "title": "",
           "rawConfiguration": {
-            "text": "# 2. STEP2_NAME\n## AJAX Request Performance\n"
+            "text": "# 2. Validate Coupons\n## AJAX Request Performance\n"
           },
           "linkedEntityGuids": null
         },
@@ -251,7 +251,7 @@
             "height": 2,
             "width": 4
           },
-          "title": "STEP2_NAME Response Time (ms)",
+          "title": "Validate Coupon Response Time (ms)",
           "rawConfiguration": {
             "dataFormatters": [],
             "legend": {
@@ -259,8 +259,8 @@
             },
             "nrqlQueries": [
               {
-                "accountId": ACCOUNT_ID,
-                "query": "SELECT 2000 AS TargetMaximumResponseTime, average(newrelic.timeslice.value) * 1000 AS `ResponseTime` FROM Metric WHERE metricTimesliceName = 'AJAX_METRIC_NAME' AND `entity.guid` = 'WEB_APP_GUID' SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO TIMESERIES AUTO"
+                "accountId": 1606862,
+                "query": "SELECT 2000 AS TargetMaximumResponseTime, average(newrelic.timeslice.value) * 1000 AS `ResponseTime` FROM Metric WHERE metricTimesliceName = 'Ajax/MethodPathRequest/GET/webportal.telco.nrdemo.com:80/Path/coupons/*/isvalid/ResponseTime' AND `entity.guid` = 'MTYwNjg2MnxCUk9XU0VSfEFQUExJQ0FUSU9OfDQzMTkyMzEx' SINCE 1 week AGO COMPARE WITH 1 week AGO TIMESERIES AUTO"
               }
             ],
             "yAxisLeft": {
@@ -279,7 +279,7 @@
             "height": 2,
             "width": 4
           },
-          "title": "STEP2_NAME Success (%)",
+          "title": "Validate Coupon Success (%)",
           "rawConfiguration": {
             "dataFormatters": [],
             "legend": {
@@ -287,8 +287,8 @@
             },
             "nrqlQueries": [
               {
-                "accountId": ACCOUNT_ID,
-                "query": "FROM AjaxRequest SELECT 0.95 AS TargetMinumumSuccessRate,percentage(count(*), WHERE httpResponseCode >= 200 AND httpResponseCode <300) AS 'Successful' WHERE httpResponseCode >= 200 AND STEP2_AJAX_REQUEST_FILTER  SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO TIMESERIES AUTO"
+                "accountId": 1606862,
+                "query": "FROM AjaxRequest SELECT 0.98 AS TargetMinumumSuccessRate,percentage(count(*), WHERE httpResponseCode >= 200 AND httpResponseCode <300) AS 'Successful' WHERE httpResponseCode >= 200 AND appName ='WebPortal' and pageUrl like '%shoppingcart%'  SINCE 1 week AGO COMPARE WITH 1 week AGO TIMESERIES AUTO"
               }
             ],
             "yAxisLeft": {
@@ -309,7 +309,7 @@
           },
           "title": "",
           "rawConfiguration": {
-            "text": "# 3. STEP3_NAME\n## Page Performance\n"
+            "text": "# 3. Order Confirmed\n## Page Performance\n"
           },
           "linkedEntityGuids": null
         },
@@ -323,13 +323,13 @@
             "height": 2,
             "width": 2
           },
-          "title": "STEP3_NAME FirstPaint (s)",
+          "title": "Order Confirmed TTFB",
           "rawConfiguration": {
             "dataFormatters": [],
             "nrqlQueries": [
               {
-                "accountId": ACCOUNT_ID,
-                "query": "SELECT percentile(firstPaint, 75) FROM PageViewTiming WHERE STEP3_FILTER SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO "
+                "accountId": 1606862,
+                "query": "FROM PageView SELECT percentile(backendDuration, 75) AS 'TTFB' WHERE pageUrl LIKE '%checkout%' SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO"
               }
             ],
             "thresholds": []
@@ -346,13 +346,13 @@
             "height": 2,
             "width": 2
           },
-          "title": "STEP3_NAME LCP (s)",
+          "title": "Order Confirmed LCP (s)",
           "rawConfiguration": {
             "dataFormatters": [],
             "nrqlQueries": [
               {
-                "accountId": ACCOUNT_ID,
-                "query": "SELECT percentile(largestContentfulPaint, 75) FROM PageViewTiming WHERE STEP3_FILTER SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO"
+                "accountId": 1606862,
+                "query": "SELECT percentile(largestContentfulPaint, 75) FROM PageViewTiming WHERE pageUrl LIKE '%checkout%' SINCE 1 week AGO COMPARE WITH 1 WEEK AGO"
               }
             ],
             "thresholds": []
@@ -369,13 +369,13 @@
             "height": 2,
             "width": 2
           },
-          "title": "STEP3_NAME CLS (score)",
+          "title": "Order Confirmed CLS (score)",
           "rawConfiguration": {
             "dataFormatters": [],
             "nrqlQueries": [
               {
-                "accountId": ACCOUNT_ID,
-                "query": "SELECT percentile(cumulativeLayoutShift, 75) FROM PageViewTiming WHERE STEP3_FILTER SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO"
+                "accountId": 1606862,
+                "query": "SELECT percentile(cumulativeLayoutShift, 75) FROM PageViewTiming WHERE pageUrl LIKE '%checkout%' SINCE 1 week AGO COMPARE WITH 1 WEEK AGO"
               }
             ],
             "thresholds": []
@@ -392,13 +392,13 @@
             "height": 2,
             "width": 2
           },
-          "title": "STEP3_NAME FirstInputDelay (ms)",
+          "title": "Order Confirmed FirstInputDelay (ms)",
           "rawConfiguration": {
             "dataFormatters": [],
             "nrqlQueries": [
               {
-                "accountId": ACCOUNT_ID,
-                "query": "SELECT percentile(firstInputDelay, 75) FROM PageViewTiming WHERE STEP3_FILTER SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO"
+                "accountId": 1606862,
+                "query": "SELECT percentile(firstInputDelay, 75) FROM PageViewTiming WHERE pageUrl LIKE '%checkout%' SINCE 1 week AGO COMPARE WITH 1 WEEK AGO"
               }
             ],
             "thresholds": []
