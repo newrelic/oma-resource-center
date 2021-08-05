@@ -38,7 +38,7 @@
             "nrqlQueries": [
               {
                 "accountId": ACCOUNT_ID,
-                "query": "SELECT funnel(username, WHERE PAGE1_FILTER AS 'STEP1_NAME', WHERE PAGEN_FILTER AS 'STEPN_NAME') from PageView since 1 week ago"
+                "query": "SELECT funnel(username, WHERE PAGE1_FILTER AS 'STEP1_NAME', WHERE PAGEN_FILTER AS 'STEPN_NAME') FROM PageView SINCE 1 WEEK AGO"
               }
             ]
           },
@@ -62,7 +62,7 @@
             "nrqlQueries": [
               {
                 "accountId": ACCOUNT_ID,
-                "query": "FROM SyntheticCheck select percentage(count(*),WHERE result = 'FAILED') where monitorName = 'BOTF_MONITOR_NAME' since 1 week ago COMPARE WITH 1 week ago TIMESERIES AUTO"
+                "query": "FROM SyntheticCheck select percentage(count(*),WHERE result = 'FAILED') where monitorName = 'BOTF_MONITOR_NAME' SINCE 1 WEEK AGO COMPARE WITH 1 WEEK ago TIMESERIES AUTO"
               }
             ],
             "yAxisLeft": {
@@ -87,7 +87,7 @@
             "nrqlQueries": [
               {
                 "accountId": ACCOUNT_ID,
-                "query": "SELECT count(*) * (6.2) AS USD FROM PageView, AjaxRequest  WHERE REVENUE_AT_RISK_LATENCY_FILTER AND  (timeToSettle > 2.0 OR firstContentfulPaint > 1.0) since 1 week ago compare with 1 week ago"
+                "query": "SELECT count(*) * (6.2) AS USD FROM PageView, AjaxRequest  WHERE REVENUE_AT_RISK_LATENCY_FILTER AND  (timeToSettle > 2.0 OR firstContentfulPaint > 1.0) SINCE 1 WEEK AGO compare with 1 WEEK ago"
               }
             ],
             "thresholds": []
@@ -110,7 +110,7 @@
             "nrqlQueries": [
               {
                 "accountId": ACCOUNT_ID,
-                "query": "FROM AjaxRequest SELECT count(*) * 6.2 AS USD WHERE httpResponseCode >= 300 AND appName ='WebPortal' and REVENUE_AT_RISK_ERRORS_FILTER SINCE 1 week AGO COMPARE WITH 1 week AGO"
+                "query": "FROM AjaxRequest SELECT count(*) * 6.2 AS USD WHERE httpResponseCode >= 300 AND appName ='WebPortal' AND REVENUE_AT_RISK_ERRORS_FILTER SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO"
               }
             ],
             "thresholds": []
@@ -149,7 +149,7 @@
             "nrqlQueries": [
               {
                 "accountId": ACCOUNT_ID,
-                "query": "SELECT percentile(firstPaint, 75) FROM PageViewTiming WHERE STEP1_FILTER SINCE 1 week AGO COMPARE WITH 1 WEEK AGO"
+                "query": "SELECT percentile(firstPaint, 75) FROM PageViewTiming WHERE STEP1_FILTER SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO"
               }
             ],
             "thresholds": []
@@ -329,7 +329,7 @@
             "nrqlQueries": [
               {
                 "accountId": ACCOUNT_ID,
-                "query": "SELECT percentile(firstPaint, 75) FROM PageViewTiming WHERE STEP3_FILTER SINCE 1 week AGO COMPARE WITH 1 WEEK AGO "
+                "query": "SELECT percentile(firstPaint, 75) FROM PageViewTiming WHERE STEP3_FILTER SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO "
               }
             ],
             "thresholds": []
