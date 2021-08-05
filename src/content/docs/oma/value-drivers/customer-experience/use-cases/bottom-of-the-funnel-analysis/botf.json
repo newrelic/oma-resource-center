@@ -38,7 +38,7 @@
             "nrqlQueries": [
               {
                 "accountId": ACCOUNT_ID,
-                "query": "SELECT funnel(username, WHERE PAGE1_FILTER AS 'STEP1_NAME', WHERE STEPN_FILTER AS 'STEPN_NAME') FROM PageView SINCE 1 WEEK AGO"
+                "query": "SELECT funnel(username, WHERE STEP1_FILTER AS 'STEP1_NAME', WHERE STEPN_FILTER AS 'STEPN_NAME') FROM PageView SINCE 1 WEEK AGO"
               }
             ]
           },
@@ -110,7 +110,7 @@
             "nrqlQueries": [
               {
                 "accountId": ACCOUNT_ID,
-                "query": "FROM AjaxRequest SELECT count(*) * 6.2 AS USD WHERE httpResponseCode >= 300 AND appName ='WebPortal' AND REVENUE_AT_RISK_ERRORS_FILTER SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO"
+                "query": "FROM AjaxRequest SELECT count(*) * 6.2 AS USD WHERE httpResponseCode >= 300 AND REVENUE_AT_RISK_ERRORS_FILTER SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO"
               }
             ],
             "thresholds": []
