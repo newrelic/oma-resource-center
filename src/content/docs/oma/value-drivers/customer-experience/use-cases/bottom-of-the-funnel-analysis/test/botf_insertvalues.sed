@@ -1,0 +1,15 @@
+s#ACCOUNT_ID#00000#;
+s#BOTTOM_OF_THE_FLOW_NAME#Begin Checkout -> Confirm Order#;
+s#REVENUE_AT_RISK_LATENCY_FILTER#appName ='WebPortal' AND pageUrl LIKE '%shoppingcart%'#;
+s#REVENUE_AT_RISK_ERRORS_FILTER#appName ='WebPortal' AND pageUrl LIKE '%shoppingcart%'#;
+s#STEP1_NAME#Begin Checkout#;
+s#STEP1_FILTER#pageUrl LIKE '%shopping%'#;
+s#STEP2_NAME#Validate Coupons#;
+s#STEP2_AJAX_REQUEST_FILTER#appName ='WebPortal' AND pageUrl LIKE '%shoppingcart%'#;
+s#STEP3_NAME#Order Confirmed#;
+s#STEP3_FILTER#pageUrl LIKE '%checkout%'#;
+s#STEPN_NAME#Order Confirmed#;
+s#STEPN_FILTER#pageUrl LIKE '%checkout%'#;
+s#BOTF_MONITOR_NAME#Verify all APIs are working#;
+s#AJAX_METRIC_NAME#Ajax/MethodPathRequest/GET/webportal.telco.nrdemo.com:80/Path/coupons/*/isvalid/ResponseTime#;
+s#WEB_APP_GUID#MTYwNjg2MnxCUk9XU0VSfEFQUExJQ0FUSU9OfDQzMTkyMzEx#;
