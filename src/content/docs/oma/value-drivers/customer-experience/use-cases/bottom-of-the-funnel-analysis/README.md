@@ -111,7 +111,7 @@ __Success % Query__<br>
 
 ![Bottom of the Funnel KPIs](images/CustomerExperience_Botf_KPIs.png?raw=true "Cx Bottom of the Funnel KPIs")
 
-<img src="images/CustomerExperience_Botf_KPIs.png" width="48">
+<img src="images/CustomerExperience_Botf_KPIs.png" width="250">
 
 The CustomerExperience_BotFAnalysis document provides a way to measure baselines and track progress while improving KPI performance.
 
