@@ -27,7 +27,7 @@ The performance of each step making up the bottom of the funnel follows below th
 ## [Summary data queries](README_Botf_summary.md)
 ## [Step data queries](README_Botf_step_queries.md)
 
-# KPI Measurement
+# KPI measurement
 
 <img src="images/CustomerExperience_Botf_KPIs.png" width="500">
 
