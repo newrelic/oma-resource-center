@@ -1,26 +1,28 @@
   
-# Bottom of the Funnel Analysis dashboard instructions
+# Bottom of the funnel analysis
 
 ![Bottom of the Funnel Analysis example](images/CustomerExperience_BotFunnelAnalysis.png?raw=true "Cx Bottom of the Funnel")
 
-The Bottom of the Funnel Analysis dashboard measures the user experience during the critical phase of the user's journey, which starts when the user passes a threshold indicating intent to complete an action.  For example, when a user goes to a cart and initiates checkout. 
+The bottom of the funnel analysis dashboard measures the user experience during the critical phase of the user's journey, which starts when the user passes a threshold indicating intent to complete an action.  For example, when a user goes to a cart and initiates checkout.   To implement the dashboard:
  
-1. Follow the steps in <docs link> to determine steps in the user journey that you will measure
+1. Follow the steps in the [implementation guide](https://docs.newrelic.com/docs/new-relic-solutions/observability-maturity/customer-experience/bofta-implementation-guide/#establish-current-state) to determine steps in the user journey that you will measure
 
 2. Download the [dashboard json](botf.json). 
 
-3. Edit botf.json and change ACCOUNT_ID to the account id that you will run most of the queries from.
+3. Edit botf.json and change ACCOUNT_ID to the account id that you will run most of the queries from.  Edit the filters.
 
 4. Import the JSON as a new Dashboard via the main Dashboards menu.
 ![Dashboard import](../images/ImportDashboard.png?raw=true "Dashboard import")
 
 5. Edit the imported dashboard 
 
-# How the Dashboard is organized
+# Dashboard organization
 
 The dashboard is organized into sections.   The four widgets at the top make up the summary data.  Summary data includes the bottom of the funnel conversion rate, synthetics checks results, and revenue at risk.   
 
-The performance of each step making up the bottom of the funnel follows below.  Performance data varies depending on the interaction type.  If the interaction is a PageView, you will capture Core Web Vitals and time to first byte.  If the interaction is an AjaxRequest, you will capture time to settle and http response code types (successes vs errors).
+The performance of each step making up the bottom of the funnel follows below the summary data.  Performance data varies depending on the interaction type.  
+* If the interaction is a PageView, you will capture Core Web Vitals and time to first byte.  
+* If the interaction is an AjaxRequest, you will capture time to settle and http response code types (successes vs errors).
 
 # Summary data queries
 Edit the title tile to reflect the bottom of the funnel process shown in the dashboard.
@@ -32,30 +34,30 @@ The structure of the funnel query is as follows: <br>
   SELECT funnel(COMMON_ATTRIBUTE, WHERE .. ACTION_A, .., WHERE .. ACTION_N) <br>
   SINCE 1 WEEK AGO <br>
 
-COMMON_ATTRIBUTE - usually set to session.  You can capture conversions that happen over multiple sessions, by adding [custom attributes](https://docs.newrelic.com/docs/browser/new-relic-browser/browser-agent-spa-api/setcustomattribute-browser-agent-api/), like customerId, to Browser.  For this particular example to work, the user cannot be anonymous. 
+COMMON_ATTRIBUTE - usually set to session.  You can capture conversions that happen over multiple sessions, by adding [custom attributes](https://docs.newrelic.com/docs/browser/new-relic-browser/browser-agent-spa-api/setcustomattribute-browser-agent-api/), like customerId, to Browser.  
 
 WHERE … ACTION - filters for the PageViews or AjaxRequests relevant to that step in the user’s journey.  
 
 __Examples__  <br>
-The following tracks conversions on the basis that a user converts in a single browser session
+The following tracks conversions on the basis that a user converts in a single browser session (__PageViews__)
 >FROM PageView SELECT funnel(session_id, <br>
       WHERE appName = ‘CustomerPortal’ and pageUrl like ‘%Checkout%’ AS ‘Begin Checkout’, <br>
       WHERE appName = ‘CustomerPortal’ and pageUrl like ‘%OrderConfirmed%’ AS ‘Order Confirmed’)<br>
 
-The following tracks conversions on the basis that a user is authenticated by the time they begin checkout
+The following tracks conversions on the basis that a user is authenticated by the time they begin checkout (__PageViews__)
 >FROM PageView SELECT funnel(customerId, <br>
       WHERE appName = ‘CustomerPortal’ and pageUrl like ‘%Checkout%’ AS ‘Begin Checkout’, <br>
       WHERE appName = ‘CustomerPortal’ and pageUrl like ‘%OrderConfirmed%’ AS ‘Order Confirmed’)<br>
 
-The same query as above but for a single page application
+The same query as above but for a single page application (__AjaxRequests__)
 >FROM AjaxRequest SELECT funnel(customerId, <br>
       WHERE appName = ‘CustomerPortal’ and requestUrl like ‘%Checkout%’ AS ‘Begin Checkout’ and httpResponseCode >= 200 and httpResponseCode < 300, <br>
       WHERE appName = ‘CustomerPortal’ and requestUrl like ‘%OrderConfirmed%’ AS ‘Order Confirmed’ and httpResponseCode >= 200 and httpResponseCode < 300)<br>
 
-The funnel query pulls from a single data type. You won’t be able to include PageViews and AjaxRequests in the same funnel where conversion involves a mix of the two.  You can still capture the overall conversion rate by focusing on the page views at the start and the end.
+The funnel query pulls from a single data type. You won’t be able to combine PageViews and AjaxRequests in the same funnel.  If your bottom of the funnel flow includes a mix of PageViews and AjaxRequests you can capture the overall conversion rate by focusing on the PageViews at the start and the end.
 
 ## Synthetics Check
-Change BOTF_MONITOR_NAME to match the synthetics monitor that validates the bottom of the funnel.  This is covered in [!the bottom of the funnel implementation guide](https://docs.newrelic.com/docs/new-relic-solutions/observability-maturity/customer-experience/bofta-implementation-guide/#create-a-scripted-synthetics-check-for-the-bottom-of-the-funnel).
+Change BOTF_MONITOR_NAME to match the synthetics monitor that validates the bottom of the funnel.  This is covered in the bottom of the funnel [implementation guide](https://docs.newrelic.com/docs/new-relic-solutions/observability-maturity/customer-experience/bofta-implementation-guide/#create-a-scripted-synthetics-check-for-the-bottom-of-the-funnel).
 
 ## Revenue at Risk - Latency
 REVENUE_AT_RISK_LATENCY_FILTER - You can filter both related pages and Ajax Requests using pageUrl.  The [pageUrl value in an AjaxRequest](https://docs.newrelic.com/attribute-dictionary/?dataSource=Browser+agent&event=AjaxRequest&attributeSearch=pageUrl) reflects the page the user was on when they initiated the request.  
@@ -80,9 +82,10 @@ REVENUE_AT_RISK_ERRORS_FILTER - This is likely to be the same as REVENUE_AT_RISK
 CONVERSION_VALUE - Revenue at Risk - Latency
 
 # Bottom of the funnel queries
-## Edit, remove, or add data for each step in the bottom of the funnel
 
-As stated in [the bottom of the funnel implementation guide](https://docs.newrelic.com/docs/new-relic-solutions/observability-maturity/customer-experience/bofta-implementation-guide/#distinguish-between-pages-and-actions) the bottom of the funnel is likely to be a mix of full page loads and Ajax requests.  The dashboard json shows an example of a flow that starts with a page load followed by an ajax request followed by a page load. 
+Edit, remove, or add data for each step in the bottom of the funnel
+
+As stated in the bottom of the funnel [implementation guide](https://docs.newrelic.com/docs/new-relic-solutions/observability-maturity/customer-experience/bofta-implementation-guide/#distinguish-between-pages-and-actions) the bottom of the funnel is likely to be a mix of full page loads and Ajax requests.  The dashboard json shows an example of a flow that starts with a page load followed by an ajax request followed by a page load. 
 
 For each step, edit the tile that calls out the step in the user journey.  This will help others understand and you remember which thing the user is doing.   Edit the title to match the user step rather than the page name or ajax request name.  
 
