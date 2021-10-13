@@ -1,5 +1,5 @@
   
-# Bottom of the funnel analysis
+# Bottom of the funnel analysis dashboard
 
 ![Bottom of the Funnel Analysis example](images/CustomerExperience_BotFunnelAnalysis.png?raw=true "Cx Bottom of the Funnel")
 
@@ -16,7 +16,7 @@ The bottom of the funnel analysis dashboard measures the user experience during 
 
 5. Edit the imported dashboard 
 
-# Dashboard organization
+## Dashboard organization
 
 The dashboard is organized into sections.   The four widgets at the top make up the summary data.  Summary data includes the bottom of the funnel conversion rate, synthetics checks results, and revenue at risk.   
 
