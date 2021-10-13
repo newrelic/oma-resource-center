@@ -16,14 +16,16 @@ The Bottom of the Funnel Analysis dashboard measures the user experience during 
 
 5. Edit the imported dashboard 
 
-# How to edit the dashboard json
+# How the Dashboard is organized
 
-The dashboard is organized into sections, delineated by pink lines.   At the top is the summary data.  This shows the bottom of the funnel conversion rate, synthetics checks results, and revenue at risk.   The summary data is followed by a row for each step in the user journey at the bottom of the funnel. 
+The dashboard is organized into sections.   The four widgets at the top make up the summary data.  Summary data includes the bottom of the funnel conversion rate, synthetics checks results, and revenue at risk.   
 
-## Edit the summary data
+The performance of each step making up the bottom of the funnel follows below.  Performance data varies depending on the interaction type.  If the interaction is a PageView, you will capture Core Web Vitals and time to first byte.  If the interaction is an AjaxRequest, you will capture time to settle and http response code types (successes vs errors).
+
+# Summary data queries
 Edit the title tile to reflect the bottom of the funnel process shown in the dashboard.
 
-### Conversion Funnel 
+## Conversion Funnel 
 Update the Funnel query for your bottom of the funnel process
 The structure of the funnel query is as follows: <br>
 >FROM DATA_TYPE <br>
@@ -52,10 +54,10 @@ The same query as above but for a single page application
 
 The funnel query pulls from a single data type. You won’t be able to include PageViews and AjaxRequests in the same funnel where conversion involves a mix of the two.  You can still capture the overall conversion rate by focusing on the page views at the start and the end.
 
-### Synthetics Check
-Change BOTF_MONITOR_NAME to match the synthetics monitor that validates the bottom of the funnel.  This is covered in [!Doc Coming Soon}().
+## Synthetics Check
+Change BOTF_MONITOR_NAME to match the synthetics monitor that validates the bottom of the funnel.  This is covered in [!the bottom of the funnel implementation guide](https://docs.newrelic.com/docs/new-relic-solutions/observability-maturity/customer-experience/bofta-implementation-guide/#create-a-scripted-synthetics-check-for-the-bottom-of-the-funnel).
 
-### Revenue at Risk - Latency
+## Revenue at Risk - Latency
 REVENUE_AT_RISK_LATENCY_FILTER - You can filter both related pages and Ajax Requests using pageUrl.  The [pageUrl value in an AjaxRequest](https://docs.newrelic.com/attribute-dictionary/?dataSource=Browser+agent&event=AjaxRequest&attributeSearch=pageUrl) reflects the page the user was on when they initiated the request.  
 
 CONVERSION_VALUE - set this to what your organization considers the average value of a conversion.  Conversely, using custom attributes, you can change the query to be more specific and use the value of what the end user is about to purchase.   
@@ -68,18 +70,19 @@ where 6.0 is the average value of a conversion
 You could use
 >SELECT sum(cartValue) AS USD FROM PageView, AjaxRequest WHERE (pageUrl LIKE '%checkout%' or pageUrl LIKE '%confirmOrder%') AND (timeToSettle ..
 
-provided that you have captured the cart value using ![setCustomAttribute}(https://docs.newrelic.com/docs/browser/new-relic-browser/browser-agent-spa-api/setcustomattribute-browser-agent-api/) or ![setAttribute](https://docs.newrelic.com/docs/browser/new-relic-browser/browser-agent-spa-api/setattribute-browser-spa-api/).
+provided that you have captured the cart value using ![setCustomAttribute](https://docs.newrelic.com/docs/browser/new-relic-browser/browser-agent-spa-api/setcustomattribute-browser-agent-api/) or ![setAttribute](https://docs.newrelic.com/docs/browser/new-relic-browser/browser-agent-spa-api/setattribute-browser-spa-api/).
 
 One thing to be aware of is that in this example, the same cart value could be added multiple times if the same user experiences multiple interactions with slowness or errors.
 
-### Revenue at Risk - Errors
+## Revenue at Risk - Errors
 REVENUE_AT_RISK_ERRORS_FILTER - This is likely to be the same as REVENUE_AT_RISK_LATENCY_FILTER
 
 CONVERSION_VALUE - Revenue at Risk - Latency
 
+# Bottom of the funnel queries
 ## Edit, remove, or add data for each step in the bottom of the funnel
 
-As stated in ![Docs link coming soon]() the bottom of the funnel is likely to be a mix of full page loads and Ajax requests.  The dashboard json shows an example of a flow that starts with a page load followed by an ajax request followed by a page load. 
+As stated in ![the bottom of the funnel implementation guide](https://docs.newrelic.com/docs/new-relic-solutions/observability-maturity/customer-experience/bofta-implementation-guide/#distinguish-between-pages-and-actions) the bottom of the funnel is likely to be a mix of full page loads and Ajax requests.  The dashboard json shows an example of a flow that starts with a page load followed by an ajax request followed by a page load. 
 
 For each step, edit the tile that calls out the step in the user journey.  This will help others understand and you remember which thing the user is doing.   Edit the title to match the user step rather than the page name or ajax request name.  
 
