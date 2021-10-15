@@ -13,3 +13,4 @@ s#STEPN_FILTER#pageUrl LIKE '%checkout%'#;
 s#BOTF_MONITOR_NAME#Verify all APIs are working#;
 s#AJAX_METRIC_NAME#Ajax/MethodPathRequest/GET/webportal.telco.nrdemo.com:80/Path/coupons/*/isvalid/ResponseTime#;
 s#WEB_APP_GUID#MTYwNjg2MnxCUk9XU0VSfEFQUExJQ0FUSU9OfDQzMTkyMzEx#;
+s#CONVERSION_VALUE#6.2#;
