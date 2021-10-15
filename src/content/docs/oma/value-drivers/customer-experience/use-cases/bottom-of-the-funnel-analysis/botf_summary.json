@@ -46,7 +46,7 @@
         },
         {
           "visualization": {
-            "id": "viz.line"
+            "id": "viz.billboard"
           },
           "layout": {
             "column": 9,
@@ -75,9 +75,6 @@
                 "value": 0.005
               }
             ]
-           "yAxisLeft": {
-              "zero": true
-            }
           },
           "linkedEntityGuids": null
         },
