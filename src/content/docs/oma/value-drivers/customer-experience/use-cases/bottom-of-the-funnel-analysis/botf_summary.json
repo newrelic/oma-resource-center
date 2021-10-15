@@ -1,0 +1,154 @@
+{
+  "name": "Customer Experience - Bottom of the Funnel Analysis",
+  "description": null,
+  "permissions": "PUBLIC_READ_WRITE",
+  "pages": [
+    {
+      "name": "Customer Experience - Bottom of the Funnel Analysis",
+      "description": null,
+      "widgets": [
+        {
+          "visualization": {
+            "id": "viz.markdown"
+          },
+          "layout": {
+            "column": 1,
+            "row": 1,
+            "height": 3,
+            "width": 2
+          },
+          "title": "",
+          "rawConfiguration": {
+            "text": "# BOTTOM_OF_THE_FLOW_NAME\n## Bottom of the Funnel Analysis\n"
+          },
+          "linkedEntityGuids": null
+        },
+        {
+          "visualization": {
+            "id": "viz.funnel"
+          },
+          "layout": {
+            "column": 3,
+            "row": 1,
+            "height": 3,
+            "width": 6
+          },
+          "title": "Conversion Funnel",
+          "rawConfiguration": {
+            "nrqlQueries": [
+              {
+                "accountId": ACCOUNT_ID,
+                "query": "SELECT funnel(username, WHERE STEP1_FILTER AS 'STEP1_NAME', WHERE STEP3_FILTER AS 'STEP3_NAME') FROM PageView SINCE 1 WEEK AGO"
+              }
+            ]
+          },
+          "linkedEntityGuids": null
+        },
+        {
+          "visualization": {
+            "id": "viz.line"
+          },
+          "layout": {
+            "column": 9,
+            "row": 1,
+            "height": 3,
+            "width": 4
+          },
+          "title": "Failed Conversion Checks",
+          "rawConfiguration": {
+            "legend": {
+              "enabled": true
+            },
+            "nrqlQueries": [
+              {
+                "accountId": ACCOUNT_ID,
+                "query": "FROM SyntheticCheck select percentage(count(*),WHERE result = 'FAILED') where monitorName = 'BOTF_MONITOR_NAME' SINCE 1 WEEK AGO"
+              }
+            ],
+            "thresholds": [
+              {
+                "alertSeverity": "WARNING",
+                "value": 0.001
+              },
+              {
+                "alertSeverity": "CRITICAL",
+                "value": 0.005
+              }
+            ]
+           "yAxisLeft": {
+              "zero": true
+            }
+          },
+          "linkedEntityGuids": null
+        },
+        {
+          "visualization": {
+            "id": "viz.billboard"
+          },
+          "layout": {
+            "column": 1,
+            "row": 4,
+            "height": 2,
+            "width": 6
+          },
+          "title": "Revenue at Risk - Latency",
+          "rawConfiguration": {
+            "dataFormatters": [],
+            "nrqlQueries": [
+              {
+                "accountId": ACCOUNT_ID,
+                "query": "SELECT count(*) * (CONVERSION_VALUE) AS USD FROM PageView, AjaxRequest  WHERE appName ='WebPortal' AND REVENUE_AT_RISK_LATENCY_FILTER AND  (timeToSettle > 2.0 OR backendDuration > 0.5) SINCE 1 WEEK AGO"
+              }
+            ],
+            "thresholds": [
+              {
+                "alertSeverity": "WARNING",
+                "value": 1000
+              },
+              {
+                "alertSeverity": "CRITICAL",
+                "value": 3000
+              }
+            ]
+          },
+          "linkedEntityGuids": null
+        },
+        {
+          "visualization": {
+            "id": "viz.billboard"
+          },
+          "layout": {
+            "column": 7,
+            "row": 4,
+            "height": 2,
+            "width": 6
+          },
+          "title": "Revenue at Risk - Errors",
+          "rawConfiguration": {
+            "dataFormatters": [],
+            "nrqlQueries": [
+              {
+                "accountId": ACCOUNT_ID,
+                "query": "FROM AjaxRequest SELECT count(*) * CONVERSION_VALUE AS USD WHERE httpResponseCode >= 300 AND appName ='WebPortal' AND REVENUE_AT_RISK_LATENCY_FILTER SINCE 1 WEEK AGO "
+              }
+            ],
+            "thresholds": [
+              {
+                "alertSeverity": "WARNING",
+                "value": 5000
+              },
+              {
+                "alertSeverity": "CRITICAL",
+                "value": 10000
+              }
+            ]
+          },
+          "linkedEntityGuids": null
+        },
+        { STEP1_WIDGET},
+        { STEPN_WIDGET}
+
+      ]
+    }
+  ]
+}

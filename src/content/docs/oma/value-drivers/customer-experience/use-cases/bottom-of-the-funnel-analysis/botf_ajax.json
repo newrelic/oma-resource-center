@@ -1,0 +1,74 @@
+
+        {
+          "visualization": {
+            "id": "viz.markdown"
+          },
+          "layout": {
+            "column": 1,
+            "row": 8,
+            "height": 2,
+            "width": 2
+          },
+          "title": "",
+          "rawConfiguration": {
+            "text": "# 2. STEP2_NAME\n## AJAX Request Performance\n"
+          },
+          "linkedEntityGuids": null
+        },
+        {
+          "visualization": {
+            "id": "viz.line"
+          },
+          "layout": {
+            "column": 3,
+            "row": 8,
+            "height": 2,
+            "width": 4
+          },
+          "title": "STEP2_NAME Response Time (ms)",
+          "rawConfiguration": {
+            "dataFormatters": [],
+            "legend": {
+              "enabled": true
+            },
+            "nrqlQueries": [
+              {
+                "accountId": ACCOUNT_ID,
+                "query": "SELECT 2000 AS TargetMaximumResponseTime, average(newrelic.timeslice.value) * 1000 AS `ResponseTime` FROM Metric WHERE metricTimesliceName = 'Ajax/MethodPathRequest/GET/webportal.telco.nrdemo.com:80/Path/coupons/*/isvalid/ResponseTime' AND `entity.guid` = 'WEB_APP_GUID' SINCE 1 WEEK AGO TIMESERIES AUTO"
+              }
+            ],
+            "yAxisLeft": {
+              "zero": true
+            }
+          },
+          "linkedEntityGuids": null
+        },
+        {
+          "visualization": {
+            "id": "viz.line"
+          },
+          "layout": {
+            "column": 7,
+            "row": 8,
+            "height": 2,
+            "width": 4
+          },
+          "title": "STEP2_NAME Success (%)",
+          "rawConfiguration": {
+            "dataFormatters": [],
+            "legend": {
+              "enabled": true
+            },
+            "nrqlQueries": [
+              {
+                "accountId": ACCOUNT_ID,
+                "query": "FROM AjaxRequest SELECT 0.98 AS TargetMinumumSuccessRate,percentage(count(*), WHERE httpResponseCode >= 200 AND httpResponseCode <300) AS 'Successful' WHERE httpResponseCode >= 200 AND appName ='WebPortal' AND REVENUE_AT_RISK_LATENCY_FILTER  SINCE 1 WEEK AGO TIMESERIES AUTO"
+              }
+            ],
+            "yAxisLeft": {
+              "zero": true
+            }
+          },
+          "linkedEntityGuids": null
+        },
+   

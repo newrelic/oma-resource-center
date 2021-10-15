@@ -1,5 +1,10 @@
 # Bottom of the funnel summary data queries
-Edit the title tile to reflect the bottom of the funnel process shown in the dashboard.
+This README is a sub-section of [README.md](README.md).  
+
+## Titles, labels, and general instructions
+Edit line 2 and line 5 to name your dashboard and name the dashboard page.   
+Edit line 22 to name the bottom of the funnel you are measuring.  
+For each query, set ACCOUNT_ID the account that contains the data.  Typically, all the data is in the same New Relic account but not necessarily.
 
 ## Conversion Funnel 
 Update the Funnel query for your bottom of the funnel process
@@ -60,7 +65,7 @@ One thing to be aware of is that in this example, the same cart value could be a
 
 REVENUE_AT_RISK_ERRORS_FILTER - This is likely to be the same as REVENUE_AT_RISK_LATENCY_FILTER
 
-CONVERSION_VALUE - Revenue at Risk - Latency
+CONVERSION_VALUE - See the explanation under [Revenue at Risk - Latency](README_Botf_summary.md#revenue-at-risk---latency)
 
 
 

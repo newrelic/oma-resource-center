@@ -1,10 +1,11 @@
 # Bottom of the funnel steps queries
-
-Edit, remove, or add data for each step in the bottom of the funnel
+This README is a sub-section of [README.md](README.md).  
 
 As stated in the bottom of the funnel [implementation guide](https://docs.newrelic.com/docs/new-relic-solutions/observability-maturity/customer-experience/bofta-implementation-guide/#distinguish-between-pages-and-actions) the bottom of the funnel is likely to be a mix of full page loads and Ajax requests.  The dashboard json shows an example of a flow that starts with a page load followed by an ajax request followed by a page load. 
 
-For each step, edit the tile that calls out the step in the user journey.  This will help others understand and you remember which thing the user is doing.   Edit the title to match the user step rather than the page name or ajax request name.  
+For each step in the bottom of the funnel, make a copy of either [botf_ajax.json](botf_ajax.json) or [botf_pageview.json](botf_pageview.json)
+
+Edit the tile that calls out the step in the user journey.  This will help others understand and you remember which thing the user is doing.   Edit the title to match the user step rather than the page name or ajax request name.  
 
 ### Page performance tiles
 
