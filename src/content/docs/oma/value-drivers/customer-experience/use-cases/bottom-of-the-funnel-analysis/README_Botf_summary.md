@@ -31,7 +31,7 @@ The same query as above but for a single page application (__AjaxRequests__)
 The funnel query pulls from a single data type. You won’t be able to combine PageViews and AjaxRequests in the same funnel.  If your bottom of the funnel flow includes a mix of PageViews and AjaxRequests you can capture the overall conversion rate by focusing on the PageViews at the start and the end.
 
 ## Synthetics Check
->FROM SyntheticCheck SELECT percentage(count(*),WHERE result = 'FAILED' ) AS 'Failed Checks' where monitorName = 'BOTF_MONITOR_NAME SINCE 1 WEEK AGO 
+>FROM SyntheticCheck SELECT percentage(count(*),WHERE result = 'FAILED' ) AS 'Failed Checks' where monitorName = BOTF_MONITOR_NAME SINCE 1 WEEK AGO 
 
 Change BOTF_MONITOR_NAME to match the synthetics monitor that validates the bottom of the funnel.  This is covered in the bottom of the funnel [implementation guide](https://docs.newrelic.com/docs/new-relic-solutions/observability-maturity/customer-experience/bofta-implementation-guide/#create-a-scripted-synthetics-check-for-the-bottom-of-the-funnel).
 
