@@ -38,7 +38,7 @@
             "nrqlQueries": [
               {
                 "accountId": ACCOUNT_ID,
-                "query": "SELECT funnel(username, WHERE STEP1_FILTER AS 'STEP1_NAME', WHERE STEP3_FILTER AS 'STEP3_NAME') FROM PageView SINCE 1 WEEK AGO"
+                "query": "SELECT funnel(session, WHERE STEP1_FILTER AS 'STEP1_NAME', WHERE STEP3_FILTER AS 'STEP3_NAME') FROM PageView SINCE 1 WEEK AGO"
               }
             ]
           },
