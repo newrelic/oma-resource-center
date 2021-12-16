@@ -21,7 +21,7 @@ The Customer Experience dashboard measures the customer experience for each line
 The dashboard JSON includes two pages.  If your dashboard needs to have more than two pages, copy and paste the first page section for each additional page you need.
 You can add or remove tabs after importing the dashboard.   Import the dashboard before adding or removing widgets to make layout design easier.
 
-2. Download quality-foundation.json.  Follow the instructions in the [query readme file](README-queries.md) 
+2. Download quality-foundation.json.  Follow the instructions in the [query readme file](README-queries.md) to edit the fie.  When you are done, copy the contents into your clipboard and import the dashboard. 
 
 ## Quality Foundation KPI Measurement Instructions
 
