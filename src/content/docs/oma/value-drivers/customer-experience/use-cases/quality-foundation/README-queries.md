@@ -36,22 +36,22 @@ The attributes below have the same definitions as above, but with values that ma
 
 ## Reference - Queries
 
-This section lists each of the queries on each page.  They are broken out into sections to help NRQL novices see the different components. 
+This section lists each of the queries on each page.  They are broken out into sections to help people new to [NRQL](https://docs.newrelic.com/docs/query-your-data/nrql-new-relic-query-language/get-started/introduction-nrql-new-relics-query-language/) see the different components. 
 
 | Purpose | Select | From | Where | Since/Facet/Compare with |
 | -------  | ---- | ---- | ----| ---- |
-| Overall volume | SELECT count(*) | FROM PageView | WHERE *LOB_PAGEVIEW_FILTER* | SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO|
-| Volume by device type | SELECT count(*) | FROM PageView | WHERE *LOB_PAGEVIEW_FILTER* |FACET deviceType SINCE 1 WEEK AGO |
-| Volume by region | SELECT count(*) | FROM PageView |WHERE *LOB_PAGEVIEW_FILTER* |FACET countryCode SINCE 1 WEEK AGO |
-| Synthetics - Pre-login| SELECT percentage(count(*),WHERE result = 'FAILED') |FROM SyntheticCheck | WHERE monitorName = *LOB1_SYNTH1_MONITOR* |SINCE 1 WEEK AGO
-| Synthetics - Post-login| SELECT percentage(count(*),WHERE result = 'FAILED')| FROM SyntheticCheck | WHERE monitorName = *LOB1_SYNTH2_MONITOR* |SINCE 1 WEEK AGO
-| Time to first byte - 75th percentile| SELECT percentile(backendDuration, 75) AS 'TTFB'|FROM PageView |WHERE *LOB_PAGEVIEW_FILTER* |SINCE 1 WEEK AGO
-| Cumulative layout shift - 75th percentile| SELECT percentile(cumulativeLayoutShift, 75) |FROM PageViewTiming | WHERE *LOB_PAGEVIEW_FILTER*|SINCE 1 WEEK AGO |
-| Largest contentful paint - 75th percentile| SELECT percentile(largestContentfulPaint, 75)|FROM PageViewTiming |WHERE *LOB_PAGEVIEW_FILTER* |SINCE 1 WEEK AGO |
-| First input delay - 75th percentile| SELECT percentile(firstInputDelay, 75)|FROM PageViewTiming |WHERE *LOB_PAGEVIEW_FILTER*|SINCE 1 WEEK AGO <br/> |
-| Ajax response times - 75th percentile| SELECT percentile(timeToSettle, 75) AS 'Time to Settle'|FROM AjaxRequest  |WHERE *LOB_AJAX_FILTER* |SINCE 1 WEEK AGO |
-| 4xx and 5xx response codes| SELECT percentage(count(*), WHERE httpResponseCode >= 400) |FROM AjaxRequest |WHERE *LOB_AJAX_FILTER* |SINCE 1 WEEK AGO |
-| Javascript error rate| SELECT count(errorClass)/count(backendDuration) AS 'Javascript Errors/PageView'| FROM JavaScriptError, PageView |WHERE *LOB_PAGEVIEW_FILTER*|SINCE 1 WEEK AGO  |
+| Overall volume | SELECT count(*) | FROM [PageView](https://docs.newrelic.com/attribute-dictionary/?dataSource=Browser+agent&event=PageView) | WHERE *LOB_PAGEVIEW_FILTER* | SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO|
+| Volume by device type | SELECT count(*) | FROM [PageView](https://docs.newrelic.com/attribute-dictionary/?dataSource=Browser+agent&event=PageView)  | WHERE *LOB_PAGEVIEW_FILTER* |FACET deviceType SINCE 1 WEEK AGO |
+| Volume by region | SELECT count(*) | FROM [PageView](https://docs.newrelic.com/attribute-dictionary/?dataSource=Browser+agent&event=PageView)  |WHERE *LOB_PAGEVIEW_FILTER* |FACET countryCode SINCE 1 WEEK AGO |
+| Synthetics - Pre-login| SELECT [percentage](https://docs.newrelic.com/docs/query-your-data/nrql-new-relic-query-language/get-started/nrql-syntax-clauses-functions/#func-percentage)(count(*),WHERE result = 'FAILED') |FROM [SyntheticCheck](https://docs.newrelic.com/attribute-dictionary/?dataSource=Synthetics&event=SyntheticCheck) | WHERE monitorName = *LOB1_SYNTH1_MONITOR* |SINCE 1 WEEK AGO
+| Synthetics - Post-login| SELECT [percentage](https://docs.newrelic.com/docs/query-your-data/nrql-new-relic-query-language/get-started/nrql-syntax-clauses-functions/#func-percentage)(count(*),WHERE result = 'FAILED')| FROM [SyntheticCheck](https://docs.newrelic.com/attribute-dictionary/?dataSource=Synthetics&event=SyntheticCheck) | WHERE monitorName = *LOB1_SYNTH2_MONITOR* |SINCE 1 WEEK AGO
+| Time to first byte - 75th percentile | SELECT [percentile](https://docs.newrelic.com/docs/query-your-data/nrql-new-relic-query-language/get-started/nrql-syntax-clauses-functions/#func-percentile)(backendDuration, 75) AS 'TTFB'|FROM [PageView](https://docs.newrelic.com/attribute-dictionary/?dataSource=Browser+agent&event=PageView)  |WHERE *LOB_PAGEVIEW_FILTER* |SINCE 1 WEEK AGO
+| Cumulative layout shift - 75th percentile| SELECT [percentile](https://docs.newrelic.com/docs/query-your-data/nrql-new-relic-query-language/get-started/nrql-syntax-clauses-functions/#func-percentile)(cumulativeLayoutShift, 75) |FROM [PageViewTiming](https://docs.newrelic.com/attribute-dictionary/?dataSource=Browser+agent&event=PageViewTiming) | WHERE *LOB_PAGEVIEW_FILTER*|SINCE 1 WEEK AGO |
+| Largest contentful paint - 75th percentile| SELECT [percentile](https://docs.newrelic.com/docs/query-your-data/nrql-new-relic-query-language/get-started/nrql-syntax-clauses-functions/#func-percentile)(largestContentfulPaint, 75)|FROM [PageViewTiming](https://docs.newrelic.com/attribute-dictionary/?dataSource=Browser+agent&event=PageViewTiming) |WHERE *LOB_PAGEVIEW_FILTER* |SINCE 1 WEEK AGO |
+| First input delay - 75th percentile| SELECT [percentile](https://docs.newrelic.com/docs/query-your-data/nrql-new-relic-query-language/get-started/nrql-syntax-clauses-functions/#func-percentile)(firstInputDelay, 75)|FROM [PageViewTiming](https://docs.newrelic.com/attribute-dictionary/?dataSource=Browser+agent&event=PageViewTiming) |WHERE *LOB_PAGEVIEW_FILTER*|SINCE 1 WEEK AGO <br/> |
+| Ajax response times - 75th percentile| SELECT [percentile](https://docs.newrelic.com/docs/query-your-data/nrql-new-relic-query-language/get-started/nrql-syntax-clauses-functions/#func-percentile)(timeToSettle, 75) AS 'Time to Settle'|FROM [AjaxRequest](https://docs.newrelic.com/attribute-dictionary/?dataSource=Browser+agent&event=AjaxRequest)  |WHERE *LOB_AJAX_FILTER* |SINCE 1 WEEK AGO |
+| 4xx and 5xx response codes| SELECT [percentage](https://docs.newrelic.com/docs/query-your-data/nrql-new-relic-query-language/get-started/nrql-syntax-clauses-functions/#func-percentage)(count(*), WHERE httpResponseCode >= 400) |FROM [AjaxRequest](https://docs.newrelic.com/attribute-dictionary/?dataSource=Browser+agent&event=AjaxRequest) |WHERE *LOB_AJAX_FILTER* |SINCE 1 WEEK AGO |
+| Javascript error rate| SELECT count(errorClass)/count(backendDuration) AS 'Javascript Errors/PageView'| FROM [JavaScriptError](https://docs.newrelic.com/attribute-dictionary/?dataSource=Browser+agent&event=JavaScriptError), PageView |WHERE *LOB_PAGEVIEW_FILTER*|SINCE 1 WEEK AGO  |
 
 ## Riffs
 * If there is noticeable different between web and mobile web performance, you can show it separately in the same dashboard by breaking out each line of charts into alternating rows.  In the even rows, add the following to the WHERE clause: AND deviceType = 'Desktop'.  In odd rows, add the following to the WHERE clause: AND deviceType != 'Desktop'.  Make sure to update widget titles accordingly. 
