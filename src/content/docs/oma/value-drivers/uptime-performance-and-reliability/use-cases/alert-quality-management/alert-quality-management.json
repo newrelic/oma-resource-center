@@ -54,7 +54,7 @@
             "height": 2,
             "width": 2
           },
-          "title": "Incident Minutes (Accumulated)",
+          "title": "Closed Incident Minutes (Accumulated)",
           "rawConfiguration": {
             "nrqlQueries": [
               {
