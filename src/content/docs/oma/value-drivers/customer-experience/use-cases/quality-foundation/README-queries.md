@@ -14,7 +14,7 @@ Find and replace the text below.
 |**MAIN_PAGEVIEW_FILTER** | NRQL WHERE clause that filters PageView and PageViewTiming results to specific apps and/or page URLs e.g. appName = 'Travel.PROD' AND pageUrl LIKE '%hotel%'|
 |**MAIN_AJAX_FILTER** | WHERE clause that filters PageView and AjaxResult to specific apps and/or page URLs.  Often the same value as LOB1_PAGEVIEW_FILTER|
 
-If you are new to dashboarding, you can skip to [importing the dashboard](import-the-json-as-a-new-dashboard-via-the-main-dashboards-menu) to check progress and understanding before starting on the line of business pages. 
+If you are new to dashboarding, you can skip to [importing the dashboard](#import-the-json-as-a-new-dashboard-via-the-main-dashboards-menu) to check progress and understanding before starting on the line of business pages. 
 
 ## Download and edit [quality-foundation-lob1.json](quality-foundation-lob1.json) for each line of business 
 
@@ -27,7 +27,7 @@ If you are new to dashboarding, you can skip to [importing the dashboard](import
 |**LOB1_AJAX_FILTER** | WHERE clause that filters PageView and AjaxResult to specific apps and/or page URLs.  Often the same value as LOB1_PAGEVIEW_FILTER | 
 |**LOB1** |Name of the first LOB, product, or shared function.|
 
-Add the first line of business json by copying the json into [quality-foundation-main.json](quality-foundation-main.json) after **line 790**.  Make sure to put a comma after the **}** before pasting in your json.  Subsequent pages will be need to be comma seperated.
+Add the first line of business json by copying the json into [quality-foundation-main.json](quality-foundation-main.json) after **line 790**.  Make sure to put a comma after the **}** before pasting in your json.  Subsequent pages will be need to be comma separated.
 
 ## Import the JSON as a new Dashboard via the main Dashboards menu 
 ![Dashboard import](../images/ImportDashboard.png?raw=true "Dashboard import")
