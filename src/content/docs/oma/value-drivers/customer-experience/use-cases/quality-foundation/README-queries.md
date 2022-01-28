@@ -33,7 +33,7 @@ Add the first line of business json by copying the json into [quality-foundation
 ![Dashboard import](../images/ImportDashboard.png?raw=true "Dashboard import")
 It can be helpful to test as you go.  For example, you can start by importing the main dashboard, deleting it after a successful attempt, and then importing again with at least one line of business page.  Once the dashboard is imported you can edit it to your liking.  This includes editing queries, changing layouts, and adding new pages.
 
-## Review results.  
+## Review results  
 Add/remove dashboard widgets as needed 
 
 # Reference - Queries
