@@ -11,7 +11,7 @@
           },
           "title": "",
           "rawConfiguration": {
-            "text": "# 2. STEP2_NAME\n## AJAX Request Performance\n"
+            "text": "# N. STEP_NAME\n## AJAX Request Performance\n"
           },
           "linkedEntityGuids": null
         },
@@ -25,7 +25,7 @@
             "height": 2,
             "width": 4
           },
-          "title": "STEP2_NAME Response Time (ms)",
+          "title": "STEP_NAME Response Time (ms)",
           "rawConfiguration": {
             "dataFormatters": [],
             "legend": {
@@ -34,7 +34,7 @@
             "nrqlQueries": [
               {
                 "accountId": ACCOUNT_ID,
-                "query": "SELECT 2000 AS TargetMaximumResponseTime, average(newrelic.timeslice.value) * 1000 AS `ResponseTime` FROM Metric WHERE metricTimesliceName = 'Ajax/MethodPathRequest/GET/webportal.telco.nrdemo.com:80/Path/coupons/*/isvalid/ResponseTime' AND `entity.guid` = 'WEB_APP_GUID' SINCE 1 WEEK AGO TIMESERIES AUTO"
+                "query": "FROM AjaxRequest SELECT 2 AS TargetMaximumResponseTime, percentile(timeToSettle, 95) WHERE AJAX_REQUEST_FILTER SINCE 1 WEEK AGO TIMESERIES AUTO"
               }
             ],
             "yAxisLeft": {
@@ -53,7 +53,7 @@
             "height": 2,
             "width": 4
           },
-          "title": "STEP2_NAME Success (%)",
+          "title": "STEP_NAME Success (%)",
           "rawConfiguration": {
             "dataFormatters": [],
             "legend": {
@@ -62,7 +62,7 @@
             "nrqlQueries": [
               {
                 "accountId": ACCOUNT_ID,
-                "query": "FROM AjaxRequest SELECT 0.98 AS TargetMinumumSuccessRate,percentage(count(*), WHERE httpResponseCode >= 200 AND httpResponseCode <300) AS 'Successful' WHERE httpResponseCode >= 200 AND appName ='WebPortal' AND REVENUE_AT_RISK_LATENCY_FILTER  SINCE 1 WEEK AGO TIMESERIES AUTO"
+                "query": "FROM AjaxRequest SELECT 0.98 AS TargetMinumumSuccessRate,percentage(count(*), WHERE httpResponseCode >= 200 AND httpResponseCode <300) AS 'Successful' WHERE httpResponseCode >= 200 AND AJAX_REQUEST_FILTER SINCE 1 WEEK AGO TIMESERIES AUTO"
               }
             ],
             "yAxisLeft": {

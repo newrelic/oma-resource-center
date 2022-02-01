@@ -19,17 +19,25 @@ To create a page performance row, edit the existing dashboard or add a new row. 
 
 ### AJAX performance tiles
 
-__Average Response Time__<br>
-* Uses Ajax metrics to measure average response times.  To find the correct entity guid and the metric name, use Data Explorer.  
-* Select metrics
-* Select the browser app associated with the Ajax call.  If the browser is instrumented via auto-injection, make sure you are using the browser app and not the apm app name. 
-* Click on the _See timeslice metrics_ link
-* Filter to Ajax.  Choose the Ajax response time. 
-* Clicking on the Ajax metric will reveal the entity guid. 
+__95th Percentile Response Time__<br>
+* Uses AjaxRequest
+* AJAX_REQUEST_FILTER - Typically set to filter by web app name and (the pageUrl that the AjaxRequest is invoked from and/or the requestUrl/Ajax destination)
+* 95th percentile shows you the maximum time experienced by 95% of your users.  While Core Web Vitals focuses on the 75th percentile, Bottom of the funnel analysis is about taking an aggressive approach to what happens at the end of the funnel.  Thus, it's important to know what the performance is for almost all visitors. The reason the default is not 99% or 100% is that time spent reducing latency for the poorest 5% typically show low returns on investment.  
+
+FROM AjaxRequest SELECT 2 AS TargetMaximumResponseTime, percentile(timeToSettle, 95) WHERE AJAX_REQUEST_FILTER SINCE 1 WEEK AGO TIMESERIES AUTO
+
+Translates to: Show me the timeToSettle for the 95th percentile over the last week.  Set 2.0 seconds as the target maximum time and create a line so I can see times where timeToSettle exceeded it.
+
 
 __Success % Query__<br>
 * Uses AjaxRequest
-* STEP2_AJAX_REQUEST_FILTER - Typically set to filter by web app name and the pageUrl that the AjaxRequest is invoked from
+* AJAX_REQUEST_FILTER - Typically set to filter by web app name and (the pageUrl that the AjaxRequest is invoked from and/or the requestUrl/Ajax destination)
+
+FROM AjaxRequest SELECT 0.98 AS TargetMinumumSuccessRate,percentage(count(\*), WHERE httpResponseCode >= 200 AND httpResponseCode <300) AS 'Successful' WHERE httpResponseCode >= 200 AND AJAX_REQUEST_FILTER SINCE 1 WEEK AGO TIMESERIES AUTO
+
+Translates to: Show me what percentage of calls to the backend came back as successful over the last week.  Set 98% to the target success rate and create a line so I can see times where the target was not met. 
+
+
 
 
 
