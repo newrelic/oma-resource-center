@@ -11,7 +11,7 @@ Observability Maturity Architecture Alert Quality Management assets.
 
 ## Alerting Webhook Instructions
 
-1. In the New Relic UI, go to **API Keys** - **Insights Insert Keys** and create a new insert API key. Be prepared to copy the API key as well as the highlighted URL (see screenshot below).
+1. In the New Relic UI, go to **API Keys** - **Insights Insert Keys** and create a new insert API key. Be prepared to copy the API key as well as the highlighted URL (see screenshot below), Keep in mind that if your account has been enabled for FedRAMP, your endpoint should be ```gov-insights-collector.newrelic.com``` instead of ```insights-collector.newrelic.com```. See [Event API under FedRAMP Services](https://docs.newrelic.com/docs/security/security-privacy/compliance/fedramp-compliant-endpoints/#event-api) 
 
 ![Alt text](images/insights_key.png?raw=true "Insights")
 
