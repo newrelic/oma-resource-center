@@ -27,7 +27,7 @@ If you are new to dashboarding, you can skip to [importing the dashboard](#impor
 |**LOB1_AJAX_FILTER** | WHERE clause that filters PageView and AjaxResult to specific apps and/or page URLs.  Often the same value as LOB1_PAGEVIEW_FILTER | 
 |**LOB1** |Name of the first LOB, product, or shared function.|
 
-Add the first line of business json by copying the json into [quality-foundation-main.json](quality-foundation-main.json) after **line 790**.  Make sure to put a comma after the **}** before pasting in your json.  Subsequent pages will be need to be comma separated.
+Add the first line of business json by copying the json into [quality-foundation-main.json](quality-foundation-main.json) after **line 792**.  Make sure to put a comma after the **}** before pasting in your json.  Subsequent pages will be need to be comma separated.
 
 ## Import the JSON as a new Dashboard via the main Dashboards menu 
 ![Dashboard import](../images/ImportDashboard.png?raw=true "Dashboard import")
