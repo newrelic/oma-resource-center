@@ -1,0 +1,146 @@
+
+        {
+          "visualization": {
+            "id": "viz.markdown"
+          },
+          "layout": {
+            "column": 1,
+            "row": 6,
+            "height": 2,
+            "width": 2
+          },
+          "title": "",
+          "rawConfiguration": {
+            "text": "# 1. STEP1_NAME \n## Page Performance\n"
+          },
+          "linkedEntityGuids": null
+        },
+        {
+          "visualization": {
+            "id": "viz.billboard"
+          },
+          "layout": {
+            "column": 3,
+            "row": 6,
+            "height": 2,
+            "width": 2
+          },
+          "title": "STEP1_NAME TTFB",
+          "rawConfiguration": {
+            "dataFormatters": [],
+            "nrqlQueries": [
+              {
+                "accountId": ACCOUNT_ID,
+                "query": "FROM PageView SELECT percentile(backendDuration, 75) AS 'TTFB' WHERE STEP1_FILTER SINCE 1 WEEK AGO "
+              }
+            ],
+            "thresholds": [
+              {
+                "alertSeverity": "WARNING",
+                "value": 0.5
+              },
+              {
+                "alertSeverity": "CRITICAL",
+                "value": 1
+              }
+            ]
+          },
+          "linkedEntityGuids": null
+        },
+        {
+          "visualization": {
+            "id": "viz.billboard"
+          },
+          "layout": {
+            "column": 5,
+            "row": 6,
+            "height": 2,
+            "width": 2
+          },
+          "title": "STEP1_NAME LCP (s)",
+          "rawConfiguration": {
+            "dataFormatters": [],
+            "nrqlQueries": [
+              {
+                "accountId": ACCOUNT_ID,
+                "query": "SELECT percentile(largestContentfulPaint, 75) FROM PageViewTiming WHERE STEP1_FILTER SINCE 1 WEEK AGO "
+              }
+            ],
+            "thresholds": [
+              {
+                "alertSeverity": "WARNING",
+                "value": 2.5
+              },
+              {
+                "alertSeverity": "CRITICAL",
+                "value": 4
+              }
+            ]
+          },
+          "linkedEntityGuids": null
+        },
+        {
+          "visualization": {
+            "id": "viz.billboard"
+          },
+          "layout": {
+            "column": 7,
+            "row": 6,
+            "height": 2,
+            "width": 2
+          },
+          "title": "STEP1_NAME CLS (score)",
+          "rawConfiguration": {
+            "dataFormatters": [],
+            "nrqlQueries": [
+              {
+                "accountId": ACCOUNT_ID,
+                "query": "SELECT percentile(cumulativeLayoutShift, 75) FROM PageViewTiming WHERE STEP1_FILTER SINCE 1 WEEK AGO "
+              }
+            ],
+            "thresholds": [
+              {
+                "alertSeverity": "WARNING",
+                "value": 0.1
+              },
+              {
+                "alertSeverity": "CRITICAL",
+                "value": 0.25
+              }
+            ]
+          },
+          "linkedEntityGuids": null
+        },
+        {
+          "visualization": {
+            "id": "viz.billboard"
+          },
+          "layout": {
+            "column": 9,
+            "row": 6,
+            "height": 2,
+            "width": 2
+          },
+          "title": "STEP1_NAME FirstInputDelay (ms)",
+          "rawConfiguration": {
+            "dataFormatters": [],
+            "nrqlQueries": [
+              {
+                "accountId": ACCOUNT_ID,
+                "query": "SELECT percentile(firstInputDelay, 75) FROM PageViewTiming WHERE STEP1_FILTER SINCE 1 WEEK AGO "
+              }
+            ],
+            "thresholds": [
+              {
+                "alertSeverity": "WARNING",
+                "value": 100
+              },
+              {
+                "alertSeverity": "CRITICAL",
+                "value": 300
+              }
+            ]
+          },
+          "linkedEntityGuids": null
+        },
+       
