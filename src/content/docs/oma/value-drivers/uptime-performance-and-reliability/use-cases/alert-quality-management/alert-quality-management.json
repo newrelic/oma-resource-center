@@ -8,116 +8,141 @@
       "description": null,
       "widgets": [
         {
-          "visualization": {
-            "id": "viz.markdown"
-          },
+          "title": "",
           "layout": {
             "column": 1,
             "row": 1,
-            "height": 2,
-            "width": 2
+            "width": 2,
+            "height": 2
           },
-          "title": "",
+          "linkedEntityGuids": null,
+          "visualization": {
+            "id": "viz.markdown"
+          },
           "rawConfiguration": {
             "text": "Week of [date]\n\n* Count: nn\n* Minutes: nn\n* Engagement: nn%\n"
-          },
-          "linkedEntityGuids": null
+          }
         },
         {
-          "visualization": {
-            "id": "viz.billboard"
-          },
+          "title": "Incident Count",
           "layout": {
             "column": 3,
             "row": 1,
-            "height": 2,
-            "width": 2
+            "width": 2,
+            "height": 2
           },
-          "title": "Incident Count",
-          "rawConfiguration": {
-            "nrqlQueries": [
-              {
-                "accountId": 0000000,
-                "query": "FROM nrAQMIncident SELECT count(*) AS 'Incident Count' WHERE current_state='open' AND severity='CRITICAL'  SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO"
-              }
-            ]
-          },
-          "linkedEntityGuids": null
-        },
-        {
+          "linkedEntityGuids": null,
           "visualization": {
             "id": "viz.billboard"
           },
+          "rawConfiguration": {
+            "facet": {
+              "showOtherSeries": false
+            },
+            "nrqlQueries": [
+              {
+                "accountId": 0000000,
+                "query": "FROM NrAiIncident SELECT count(*) AS 'Incident Count' WHERE event = 'open' AND priority = 'critical' SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO"
+              }
+            ],
+            "platformOptions": {
+              "ignoreTimeRange": false
+            }
+          }
+        },
+        {
+          "title": "Closed Incident Minutes (Accumulated)",
           "layout": {
             "column": 5,
             "row": 1,
-            "height": 2,
-            "width": 2
+            "width": 2,
+            "height": 2
           },
-          "title": "Incident Minutes (Accumulated)",
-          "rawConfiguration": {
-            "nrqlQueries": [
-              {
-                "accountId": 0000000,
-                "query": "FROM nrAQMIncident SELECT sum(duration)/(1000*60) AS 'Incident Minutes' WHERE current_state='closed' AND severity='CRITICAL'  SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO "
-              }
-            ]
-          },
-          "linkedEntityGuids": null
-        },
-        {
+          "linkedEntityGuids": null,
           "visualization": {
             "id": "viz.billboard"
           },
+          "rawConfiguration": {
+            "facet": {
+              "showOtherSeries": false
+            },
+            "nrqlQueries": [
+              {
+                "accountId": 0000000,
+                "query": "FROM NrAiIncident SELECT sum(durationSeconds)/60 AS 'Incident Minutes' WHERE event = 'close' AND priority = 'critical' SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO "
+              }
+            ],
+            "platformOptions": {
+              "ignoreTimeRange": false
+            }
+          }
+        },
+        {
+          "title": "Incident MTTC (minutes)",
           "layout": {
             "column": 7,
             "row": 1,
-            "height": 2,
-            "width": 1
+            "width": 1,
+            "height": 2
           },
-          "title": "Incident MTTC (minutes)",
-          "rawConfiguration": {
-            "nrqlQueries": [
-              {
-                "accountId": 0000000,
-                "query": "FROM nrAQMIncident SELECT average(duration/(1000*60)) AS 'Incident MTTC (minutes)' WHERE current_state='closed' AND severity='CRITICAL' SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO"
-              }
-            ]
-          },
-          "linkedEntityGuids": null
-        },
-        {
+          "linkedEntityGuids": null,
           "visualization": {
             "id": "viz.billboard"
           },
+          "rawConfiguration": {
+            "facet": {
+              "showOtherSeries": false
+            },
+            "nrqlQueries": [
+              {
+                "accountId": 0000000,
+                "query": "FROM NrAiIncident SELECT average(durationSeconds/60) AS 'Incident MTTC (minutes)' WHERE event = 'close' AND priority = 'critical' SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO"
+              }
+            ],
+            "platformOptions": {
+              "ignoreTimeRange": false
+            }
+          }
+        },
+        {
+          "title": "% Under 5min",
           "layout": {
             "column": 8,
             "row": 1,
-            "height": 2,
-            "width": 1
+            "width": 1,
+            "height": 2
           },
-          "title": "% Under 5min",
-          "rawConfiguration": {
-            "nrqlQueries": [
-              {
-                "accountId": 0000000,
-                "query": "FROM nrAQMIncident SELECT percentage(count(*), WHERE duration <= 5*60*1000) AS '% Under 5min' WHERE current_state='closed' AND severity='CRITICAL' SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO "
-              }
-            ]
-          },
-          "linkedEntityGuids": null
-        },
-        {
+          "linkedEntityGuids": null,
           "visualization": {
             "id": "viz.billboard"
           },
+          "rawConfiguration": {
+            "facet": {
+              "showOtherSeries": false
+            },
+            "nrqlQueries": [
+              {
+                "accountId": 0000000,
+                "query": "FROM NrAiIncident SELECT percentage(count(*), WHERE durationSeconds <= 5*60) AS '% Under 5min' WHERE event = 'close' AND priority = 'critical' SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO "
+              }
+            ],
+            "platformOptions": {
+              "ignoreTimeRange": false
+            }
+          }
+        },
+        {
+          "title": "% Investigated ",
           "layout": {
             "column": 9,
             "row": 1,
-            "height": 2,
-            "width": 2
+            "width": 2,
+            "height": 2
           },
-          "title": "% Investigated ",
+          "linkedEntityGuids": null,
+          "visualization": {
+            "id": "viz.billboard"
+          },
           "rawConfiguration": {
             "nrqlQueries": [
               {
@@ -125,20 +150,20 @@
                 "query": "FROM nrAQMIncident SELECT filter(count(*), WHERE current_state='acknowledged')/filter(count(*), WHERE current_state='open')*100 AS '% Investigated' WHERE severity='CRITICAL' SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO"
               }
             ]
-          },
-          "linkedEntityGuids": null
+          }
         },
         {
-          "visualization": {
-            "id": "viz.billboard"
-          },
+          "title": "MTTI (minutes)",
           "layout": {
             "column": 11,
             "row": 1,
-            "height": 2,
-            "width": 2
+            "width": 2,
+            "height": 2
           },
-          "title": "MTTI (minutes)",
+          "linkedEntityGuids": null,
+          "visualization": {
+            "id": "viz.billboard"
+          },
           "rawConfiguration": {
             "nrqlQueries": [
               {
@@ -146,20 +171,22 @@
                 "query": "FROM nrAQMIncident SELECT average(duration/(1000*60)) AS 'Incident MTTI (minutes)' WHERE current_state='acknowledged' AND severity='CRITICAL' SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO"
               }
             ]
-          },
-          "linkedEntityGuids": null
+          }
         },
         {
-          "visualization": {
-            "id": "viz.table"
-          },
+          "title": "Alerting Count by Policy",
           "layout": {
             "column": 1,
             "row": 3,
-            "height": 3,
-            "width": 6
+            "width": 6,
+            "height": 3
           },
-          "title": "Alerting Count by Policy",
+          "linkedEntityGuids": [
+            "MTU2NDkyMXxWSVp8REFTSEJPQVJEfDQ3MTUwNjY"
+          ],
+          "visualization": {
+            "id": "viz.table"
+          },
           "rawConfiguration": {
             "facet": {
               "showOtherSeries": false
@@ -167,67 +194,94 @@
             "nrqlQueries": [
               {
                 "accountId": 0000000,
-                "query": "FROM nrAQMIncident SELECT filter(count(*),WHERE current_state='open') AS 'Count', filter(sum(duration)/(1000*60),WHERE current_state='closed') AS 'Minutes',filter(count(*), WHERE current_state='acknowledged')/filter(count(*), WHERE current_state='open')*100 AS '% Investigated', average(duration/(1000*60)) AS 'MTTC',filter(count(*), WHERE current_state='closed' AND duration < 5*60*1000)/filter(count(*), WHERE current_state='open')*100 AS '%<5min' WHERE severity='CRITICAL'  SINCE 1 WEEK AGO FACET policy_name LIMIT 100 "
+                "query": "FROM NrAiIncident SELECT filter(count(*),WHERE event = 'open') AS 'Count', filter(sum(durationSeconds)/60,WHERE event = 'close') AS 'Minutes',filter(count(*), WHERE event = 'acknowledged')/filter(count(*), WHERE event = 'open')*100 AS '% Investigated', average(durationSeconds/60) AS 'MTTC',filter(count(*), WHERE event = 'close' AND durationSeconds < 60)/filter(count(*), WHERE event = 'open')*100 AS '%<5min' WHERE priority = 'critical' SINCE 1 WEEK AGO FACET policyName LIMIT 100"
               }
-            ]
-          },
-          "linkedEntityGuids": [
-            "MjI4ODIxMXxWSVp8REFTSEJPQVJEfDE2Mzc3OTk"
-          ]
+            ],
+            "platformOptions": {
+              "ignoreTimeRange": false
+            }
+          }
         },
         {
-          "visualization": {
-            "id": "viz.line"
-          },
+          "title": "Incident Count",
           "layout": {
             "column": 7,
             "row": 3,
-            "height": 3,
-            "width": 3
+            "width": 3,
+            "height": 3
           },
-          "title": "Incident Count",
-          "rawConfiguration": {
-            "nrqlQueries": [
-              {
-                "accountId": 0000000,
-                "query": "FROM nrAQMIncident SELECT count(*) AS 'Incident Count' WHERE current_state='open' SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO TIMESERIES AUTO "
-              }
-            ]
-          },
-          "linkedEntityGuids": null
-        },
-        {
+          "linkedEntityGuids": null,
           "visualization": {
             "id": "viz.line"
           },
-          "layout": {
-            "column": 10,
-            "row": 3,
-            "height": 3,
-            "width": 3
-          },
-          "title": "Incident Duration",
           "rawConfiguration": {
+            "facet": {
+              "showOtherSeries": false
+            },
+            "legend": {
+              "enabled": true
+            },
             "nrqlQueries": [
               {
                 "accountId": 0000000,
-                "query": "FROM nrAQMIncident SELECT sum(duration)/(1000*60) AS 'Incident Minutes' WHERE current_state='closed' SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO TIMESERIES AUTO"
+                "query": "FROM NrAiIncident SELECT count(*) AS 'Incident Count' WHERE event = 'open' SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO TIMESERIES AUTO "
               }
-            ]
-          },
-          "linkedEntityGuids": null
+            ],
+            "platformOptions": {
+              "ignoreTimeRange": false
+            },
+            "yAxisLeft": {
+              "zero": true
+            }
+          }
         },
         {
-          "visualization": {
-            "id": "viz.table"
+          "title": "Incident Duration",
+          "layout": {
+            "column": 10,
+            "row": 3,
+            "width": 3,
+            "height": 3
           },
+          "linkedEntityGuids": null,
+          "visualization": {
+            "id": "viz.line"
+          },
+          "rawConfiguration": {
+            "facet": {
+              "showOtherSeries": false
+            },
+            "legend": {
+              "enabled": true
+            },
+            "nrqlQueries": [
+              {
+                "accountId": 0000000,
+                "query": "FROM NrAiIncident SELECT sum(durationSeconds)/60 AS 'Incident Minutes' WHERE event = 'close' SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO TIMESERIES AUTO"
+              }
+            ],
+            "platformOptions": {
+              "ignoreTimeRange": false
+            },
+            "yAxisLeft": {
+              "zero": true
+            }
+          }
+        },
+        {
+          "title": "count by condition",
           "layout": {
             "column": 1,
             "row": 6,
-            "height": 4,
-            "width": 4
+            "width": 4,
+            "height": 4
           },
-          "title": "count by condition",
+          "linkedEntityGuids": [
+            "MTU2NDkyMXxWSVp8REFTSEJPQVJEfDQ3MTUwNjY"
+          ],
+          "visualization": {
+            "id": "viz.table"
+          },
           "rawConfiguration": {
             "facet": {
               "showOtherSeries": false
@@ -235,76 +289,106 @@
             "nrqlQueries": [
               {
                 "accountId": 0000000,
-                "query": "FROM nrAQMIncident SELECT count(*) AS '# of Alerts' WHERE current_state='open'  SINCE 1 WEEK AGO FACET condition_name LIMIT 250"
+                "query": "FROM NrAiIncident SELECT count(*) AS '# of Alerts' WHERE event = 'open'  SINCE 1 WEEK AGO FACET conditionName LIMIT 250"
               }
-            ]
-          },
-          "linkedEntityGuids": [
-            "MjI4ODIxMXxWSVp8REFTSEJPQVJEfDE2Mzc3OTk"
-          ]
+            ],
+            "platformOptions": {
+              "ignoreTimeRange": false
+            }
+          }
         },
         {
-          "visualization": {
-            "id": "viz.area"
-          },
+          "title": "Incident Minutes by Policy",
           "layout": {
             "column": 5,
             "row": 6,
-            "height": 4,
-            "width": 4
+            "width": 4,
+            "height": 4
           },
-          "title": "Incident Minutes by Policy",
+          "linkedEntityGuids": null,
+          "visualization": {
+            "id": "viz.line"
+          },
           "rawConfiguration": {
+            "facet": {
+              "showOtherSeries": false
+            },
+            "legend": {
+              "enabled": true
+            },
             "nrqlQueries": [
               {
                 "accountId": 0000000,
-                "query": "FROM nrAQMIncident SELECT sum(duration)/(1000*60) AS 'Incident Minutes' WHERE current_state='closed' SINCE 1 WEEK AGO TIMESERIES AUTO FACET policy_name "
+                "query": "FROM NrAiIncident SELECT sum(durationSeconds)/60 AS 'Incident Minutes' WHERE event = 'close' SINCE 1 WEEK AGO TIMESERIES AUTO FACET policyName"
               }
-            ]
-          },
-          "linkedEntityGuids": null
+            ],
+            "platformOptions": {
+              "ignoreTimeRange": false
+            },
+            "yAxisLeft": {
+              "zero": true
+            }
+          }
         },
         {
-          "visualization": {
-            "id": "viz.area"
-          },
+          "title": "Minutes by Policy & Condition",
           "layout": {
             "column": 9,
             "row": 6,
-            "height": 4,
-            "width": 4
+            "width": 4,
+            "height": 4
           },
-          "title": "Minutes by Policy & Condition",
+          "linkedEntityGuids": null,
+          "visualization": {
+            "id": "viz.line"
+          },
           "rawConfiguration": {
+            "facet": {
+              "showOtherSeries": false
+            },
+            "legend": {
+              "enabled": true
+            },
             "nrqlQueries": [
               {
                 "accountId": 0000000,
-                "query": "FROM nrAQMIncident SELECT sum(duration/(60*1000)) AS 'Minutes by Policy & Condition' WHERE current_state='closed' SINCE 1 WEEK AGO TIMESERIES AUTO FACET policy_name, condition_name"
+                "query": "FROM NrAiIncident SELECT sum(durationSeconds/60) AS 'Minutes by Policy & Condition' WHERE event = 'close' SINCE 1 WEEK AGO TIMESERIES AUTO FACET policyName, conditionName"
               }
-            ]
-          },
-          "linkedEntityGuids": null
+            ],
+            "platformOptions": {
+              "ignoreTimeRange": false
+            },
+            "yAxisLeft": {
+              "zero": true
+            }
+          }
         },
         {
-          "visualization": {
-            "id": "viz.table"
-          },
+          "title": "Incident Details",
           "layout": {
             "column": 1,
             "row": 10,
-            "height": 6,
-            "width": 12
+            "width": 12,
+            "height": 6
           },
-          "title": "Incident Details",
+          "linkedEntityGuids": null,
+          "visualization": {
+            "id": "viz.table"
+          },
           "rawConfiguration": {
+            "facet": {
+              "showOtherSeries": false
+            },
             "nrqlQueries": [
               {
                 "accountId": 0000000,
-                "query": "FROM nrAQMIncident SELECT policy_name,condition_name,severity,duration/(1000*60) AS 'minutes',details,incident_url SINCE 1 WEEK AGO WHERE current_state='closed' LIMIT 250"
+                "query": "FROM NrAiIncident SELECT policyName,conditionName,priority,durationSeconds/60 AS 'minutes',title,incidentLink SINCE 1 WEEK AGO WHERE event = 'close' LIMIT 250"
               }
-            ]
-          },
-          "linkedEntityGuids": null
+            ],
+            "platformOptions": {
+              "ignoreTimeRange": false
+            }
+          }
         }
       ]
     }
