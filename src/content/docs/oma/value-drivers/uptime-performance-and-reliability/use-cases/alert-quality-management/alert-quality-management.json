@@ -147,7 +147,7 @@
             "nrqlQueries": [
               {
                 "accountId": 0000000,
-                "query": "FROM nrAQMIncident SELECT filter(count(*), WHERE current_state='acknowledged')/filter(count(*), WHERE current_state='open')*100 AS '% Investigated' WHERE severity='CRITICAL' SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO"
+                "query": "FROM NrAiIssue SELECT filter(count(*), WHERE event = 'acknowledge')/filter(count(*), WHERE event = 'create') * 100 as '% Investigated' WHERE priority = 'CRITICAL' SINCE 1 week ago COMPARE WITH 1 WEEK AGO"
               }
             ]
           }
@@ -168,7 +168,7 @@
             "nrqlQueries": [
               {
                 "accountId": 0000000,
-                "query": "FROM nrAQMIncident SELECT average(duration/(1000*60)) AS 'Incident MTTI (minutes)' WHERE current_state='acknowledged' AND severity='CRITICAL' SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO"
+                "query": "FROM NrAiIssue SELECT average((acknowledgeTime - createTime) / (1000 * 60)) AS 'Incident MTTI (minutes)' WHERE event='acknowledge' AND priority='CRITICAL' SINCE 1 WEEK AGO COMPARE WITH 1 WEEK AGO"
               }
             ]
           }
