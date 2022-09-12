@@ -6,6 +6,6 @@ NOTE: Prior releases of Alert Quality Management used a webhook to create a cust
 ## Alert Quality Management Dashboard JSON Instructions
 
 1. Copy the dashboard JSON in this repo into your favorite text editor.
-1. Search and Replace all instances of `"accountId": 0000000` with the account ID of the account you're importing this dashbaord into.
+1. Search and Replace all instances of `"accountId": 0000000` with the account ID of the account you're importing this dashboard into.
 1. [Import the dashboard JSON](https://docs.newrelic.com/docs/query-your-data/explore-query-data/dashboards/introduction-dashboards/#dashboards-import).
 
